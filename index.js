@@ -22,16 +22,16 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
-  if (cmd === `${prefix}redeem`) {
-    return message.channel.send("Currently, redemptions are manually performed by the Salad team and therefore take a bit to reach your inbox. Please allow 24 hours for us to deliver your rewards; afterwards, please contact Salad Support and we will either refund you or resolve your redemption issue.");
+  if (cmd === `${prefix}links`) {
+    return message.channel.send("**Applications**\nWebsite: https://nmsassistant.com/\nAndroid: https://play.google.com/store/apps/details?id=com.kurtlourens.no_mans_sky_recipes\niOS: https://apps.apple.com/us/app/id1480287625\nWebApp: https://app.nmsassistant.com/\nDiscord Bot: Coming Soon\n\n**Social**\nTwitter: https://twitter.com/AssistantNMS\nInstagram: https://instagram.com/AssistantNMS\nFacebook: https://facebook.com/AssistantNMS\nSteam Community Page: https://steamcommunity.com/groups/AssistantNMS\nNoMansSky Social: https://nomanssky.social/AssistantNMS");
   }
 
   if (cmd === `${prefix}test`) {
-    let supportedgpus = new Discord.RichEmbed()
+    let test = new Discord.RichEmbed()
       .setDescription("**This is a test**")
-      .setColor("#0000FF")
-      .addField("nmsassistant")
-      .addField("https://nmsassistant.freshdesk.com/");
+      .setColor("148AFF")
+      .addField("__What is your name?__", "My name is the FAQ Bot")
+      .addField("__What server are you on?__", "Assistant for NMS");
 
  return message.channel.send(test);
     }
