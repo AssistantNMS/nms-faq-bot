@@ -33,6 +33,7 @@ bot.on("message", async message => {
       .addField("nmsassistant")
       .addField("https://nmsassistant.freshdesk.com/");
 
+ return message.channel.send(test);
     }
 
   if (cmd === `${prefix}international`) {
