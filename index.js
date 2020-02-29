@@ -1,12 +1,11 @@
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const bot = new Discord.Client({ disableEveryone: true });
-const ms = require("ms");
-const fs = require("fs");
+
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online and protecting ${bot.guilds.size} servers!`);
-  bot.user.setActivity(`chefs chop salad`, {type: "WATCHING"});
+  bot.user.setActivity(`with your FAQs`, {type: "HELPING"});
 });
 
 sharetrackingmessage = "If your PC hasn't submitted a 'share' during a ten minute interval, you have not earned any money for that block of time. However, just because you're not submitting shares *now* doesn't mean you won't hit a lucky streak later.\n\nAcross time, **your average earnings should stabilize at our expected earning rates.** So if you see a big zero up at the top of your app, don't panic. It's most likely not a bug and you will start earning again eventually. This is just the semi-random nature of how cryptomining works.\n\n**If you think your issue is related to a bug and not share tracking,** please visit our FAQ resources, ask a friend for help on the server, or send us a bug report through Zendesk.";
