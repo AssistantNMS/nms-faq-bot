@@ -28,12 +28,11 @@ bot.on("message", async message => {
 
   if (cmd === `${prefix}test`) {
     let supportedgpus = new Discord.RichEmbed()
-      .setDescription("__**This is a test**__")
-      .setColor("#50f442")
+      .setDescription("**This is a test**")
+      .setColor("#0000FF")
       .addField("nmsassistant")
       .addField("https://nmsassistant.freshdesk.com/");
 
-      return message.channel.send(supportedgpus);
     }
 
   if (cmd === `${prefix}international`) {
@@ -53,7 +52,7 @@ bot.on("message", async message => {
   }
 
   if (cmd === `${prefix}faq`) {
-    return message.channel.send("If you can’t find the answers you’re looking for here, try checking out our full company FAQ on Zendesk : https://salad.zendesk.com/hc/en-us");
+    return message.channel.send("If you can’t find the answers you’re looking for here, try checking out our full FAQ on Freshdesk: https://nmsassistant.freshdesk.com/");
   }
 
   if (cmd === `${prefix}earnings`) {
