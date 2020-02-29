@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SaladTechnologies/discord-bots.git"
+    "url": "git+https://github.com/Vapour38/nms-faq-bot.git"
   },
   "keywords": [
     "assistant",
@@ -23,7 +23,7 @@
   "author": "Lachlan Dennis",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SaladTechnologies/discord-bots/issues"
+    "url": "https://github.com/Vapour38/nms-faq-bot/issues"
   },
-  "homepage": "https://github.com/SaladTechnologies/discord-bots#readme"
+  "homepage": "https://github.com/Vapour38/nms-faq-bots#readme"
 }
