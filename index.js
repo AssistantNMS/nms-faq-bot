@@ -7,7 +7,7 @@ const fs = require("fs");
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online and protecting ${bot.guilds.size} servers!`);
-  bot.user.setActivity(`for your FAQs`, {type: "LISTENING"});
+  bot.user.setActivity(`your FAQs`, {type: "LISTENING"});
 });
 
 sharetrackingmessage = "If you are having any issues that this bot or our active team cannot resolve, head to https://nmsassistant.freshdesk.com/";
