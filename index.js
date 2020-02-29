@@ -1,6 +1,8 @@
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const bot = new Discord.Client({ disableEveryone: true });
+const ms = require("ms");
+const fs = require("fs");
 
 
 bot.on("ready", async () => {
@@ -8,7 +10,7 @@ bot.on("ready", async () => {
   bot.user.setActivity(`with your FAQs`, {type: "HELPING"});
 });
 
-sharetrackingmessage = "If your PC hasn't submitted a 'share' during a ten minute interval, you have not earned any money for that block of time. However, just because you're not submitting shares *now* doesn't mean you won't hit a lucky streak later.\n\nAcross time, **your average earnings should stabilize at our expected earning rates.** So if you see a big zero up at the top of your app, don't panic. It's most likely not a bug and you will start earning again eventually. This is just the semi-random nature of how cryptomining works.\n\n**If you think your issue is related to a bug and not share tracking,** please visit our FAQ resources, ask a friend for help on the server, or send us a bug report through Zendesk.";
+sharetrackingmessage = "If you are having any issues that this bot or our active team cannot resolve, head to https://nmsassistant.freshdesk.com/";
 
 
 bot.on("message", async message => {
@@ -24,12 +26,12 @@ bot.on("message", async message => {
     return message.channel.send("Currently, redemptions are manually performed by the Salad team and therefore take a bit to reach your inbox. Please allow 24 hours for us to deliver your rewards; afterwards, please contact Salad Support and we will either refund you or resolve your redemption issue.");
   }
 
-  if (cmd === `${prefix}supportedgpus`) {
+  if (cmd === `${prefix}test`) {
     let supportedgpus = new Discord.RichEmbed()
-      .setDescription("__**SUPPORTED GPUs**__")
+      .setDescription("__**This is a test**__")
       .setColor("#50f442")
-      .addField("__**AMD**__", "AMD R9 390\nAMD Radeon 470 Graphics\nRadeon RX 480\nAMD Radeon RX 570 Series\nAMD Radeon RX 580 Series\nRadeon RX 590 Series\nAMD Radeon VII 16GB\nAMD Radeon Vega 64\nAMD Radeon Vega 56\nRadeon Vega Frontier Edition")
-      .addField("__**NVIDIA**__", "GeForce GTX 1050 Ti\nGeForce GTX 1060 6GB\nGeForce GTX 1060 with Max-Q Design\nGeForce GTX 1660\nGeForce GTX 1660 Ti\nGeForce GTX 1070\nGeForce GTX 1070 Ti\nGeForce GTX 1080\nGeForce GTX 1080 Ti\nGeForce GTX 970\nGeForce GTX 980 Ti\nGeForce RTX 2080\nGeForce Tesla M60 16GB\nGeForce RTX 2080 Ti\nGeForce RTX 2070\nGeForce GTX 2060\nTITAN V\nTITAN XP\nGeForce GTX 980\nQuadro P4000\nNVIDIA Quadro P5000");
+      .addField("nmsassistant")
+      .addField("https://nmsassistant.freshdesk.com/");
 
       return message.channel.send(supportedgpus);
     }
