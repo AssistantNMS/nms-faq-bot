@@ -144,7 +144,7 @@ bot.on("message", async message => {
     .setDescription("Freshdesk Site")
     .setColor("#50f442")
     .addField("For help with bugs, please go to the Assistant for NMS site found here:", "__**Click the new support ticket button, or read the knowledge base**__\nhttps://nmsassistant.freshdesk.com/")
-  }
+
     return message.channel.send(freshdeskEmbed);
       }
 });
