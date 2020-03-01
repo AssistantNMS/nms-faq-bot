@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 const botconfig = require(".botconfig.json");
-=======
-const botconfig = require(".botconfig.json");
->>>>>>> b1f4c92534e1f71e18ea03c41d9a330b378fd533
 const Discord = require("discord.js");
 const bot = new Discord.Client({ disableEveryone: true });
 const ms = require("ms");
