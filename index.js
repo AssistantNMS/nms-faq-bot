@@ -84,7 +84,7 @@ bot.on("message", async message => {
     let supportticket2 = new Discord.RichEmbed()
       .setDescription("__**Template for a Support Ticket**__")
       .setColor("#50f442")
-      .addField("__**Description**__", "- OS\n- Phone\n- App Version\n-
+      .addField("__**Description**__", "- OS\n- Phone\n- App Version")
       .addField("__**Actual Behavior**__", "*Example* \n There is a delay scrolling up the list than there is scrolling down")
       .addField("__**Expected Behavior (Optional)**__", "*Example*\nI should be able to scroll back up at the same rate and responsive that I scrolled down the list")
       .addField("__**Attachments**__", "*When applicable, attach the following:*\n- Logs\n- Video\n- Screenshots");
