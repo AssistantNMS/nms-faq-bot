@@ -10,8 +10,6 @@ bot.on("ready", async () => {
   bot.user.setActivity(`your FAQs`, {type: "LISTENING"});
 });
 
-sharetrackingmessage = "If you are having any issues that this bot or our active team cannot resolve, head to https://nmsassistant.freshdesk.com/";
-
 
 bot.on("message", async message => {
   if (message.author.bot) return;
@@ -82,13 +80,13 @@ bot.on("message", async message => {
   }
 
   if (cmd === `${prefix}supportticket`) {
-    let supportticket1 = ("To log your support issue and get our engineers working on it, please copy the format below, fill it in with your bug information, and send it to Salad Support to generate a support ticket.");
+    let supportticket1 = ("To log your support issue and get our team working on it, please copy the format below, fill it in with your bug information, and send it to support to generate a support ticket.");
     let supportticket2 = new Discord.RichEmbed()
       .setDescription("__**Template for a Support Ticket**__")
       .setColor("#50f442")
-      .addField("__**Description**__", "- OS\n- GPU\n- App Version\n- User ID or Email (Email = the one you signed up to use Salad")
-      .addField("__**Actual Behavior**__", "*Example* \n I should be able to scroll back up at the same rate and responsive that I scrolled down the carousel")
-      .addField("__**Expected Behavior (Optional)**__", "*Example*\nI should be able to scroll back up at the same rate and responsive that I scrolled down the carousel")
+      .addField("__**Description**__", "- OS\n- Phone\n- App Version\n-
+      .addField("__**Actual Behavior**__", "*Example* \n There is a delay scrolling up the list than there is scrolling down")
+      .addField("__**Expected Behavior (Optional)**__", "*Example*\nI should be able to scroll back up at the same rate and responsive that I scrolled down the list")
       .addField("__**Attachments**__", "*When applicable, attach the following:*\n- Logs\n- Video\n- Screenshots");
 
     return message.channel.send(supportticket1)
@@ -105,21 +103,17 @@ bot.on("message", async message => {
     let help = new Discord.RichEmbed()
       .setDescription("__**List of Commands**__")
       .setColor("#50f442")
-      .addField("__**#supportticket**__", "Find out how to get help with errors not covered in the FAQ channel or `#faq`'s links!")
-      .addField("__**#systemreqs**__", "View what specs Salad requires to run!")
-      .addField("__**#international**__", "If you're not based in the USA, you might need this info!")
-      .addField("__**#earnings**__", "See how Salad uses your GPU to make you money!")
-      .addField("__**#faq**__", "Look for solutions to a problem you might have!")
-      .addField("__**#findgpu**__", "If you don't know your GPU's model, use this command to see a method on how to find that out!")
-      .addField("__**#supportedgpus**__", "View what GPUs Salad supports!")
-      .addField("__**#redeem**__", "Information on redeeming your gift cards!")
-      .addField("__**#logs**__", "Instructions on finding your log file!")
-      .addField("__**#share-tracking**__", "Read about share tracking!")
-      .addField("__**#no-earnings**__", "Read about the issue with no earnings!");
+      .addField("__**?supportticket**__", "Find out how to get help with errors not covered on the FAQ Bot")
+      .addField("__**?systemreqs**__", "View what specs you need to use the iOS or Andriod app")
+      .addField("__**?links**__", "View a list of all links related to the NMS Assistant")
+      .addField("__**?translation**__", "Help with translating the app!")
+      .addField("__**?faq**__", "Look for solutions to a problem you might have!")
+      .addField("__**?guides**__", "Help create guides for the app!")
+      .addField("__**?freshdesk**__", "Check out our support page!");
 
     return message.channel.send(help)
       .then(msg => {
-        message.channel.send("Thank you for using Salad and our services!");
+        message.channel.send("Thank you for using Assistant for NMS!");
       })
   };
 
@@ -127,12 +121,12 @@ bot.on("message", async message => {
     message.channel.send("To find your Salad logs, first navigate to `%appdata%`. Then you want to go to `roaming` and then into the `Salad` folder. Your logs will be under the file `log.log` which looks like a .txt file!");
   }
 
-  if (cmd === `${prefix}raid`){
-    message.channel.send("Hey chefs, apologies for the pings that you just received - we were raided and someone (that being me) left the chef role pingable. I am incredibly sorry - and we're working on making sure this never happens again. The server got a little too big too fast, and we need to get it up to speed to make sure that this isn't even remotely possible in the future.\n\nAgain - I sincerely apologize. Feel free to ping me in #lobby and flood my dms in retribution for the massive amount of pings you got. I deserve it.");
+  if (cmd === `${prefix}translation`){
+    message.channel.send("If you are fluent in a language that isn't already implimented into the app, go to https://nmsassistant.com/tools/translate, or talk to @KhaozTopsy#7865 directly");
   }
 
-  if (cmd === `${prefix}sharetracking`){
-    message.channel.send("");
+  if (cmd === `${prefix}guides`){
+    message.channel.send("If you would like to contribute your knowledge of NMS towards the app, head to https://nmsassistant.com/tools/guide and create a guide for us! If approved, this will then be featured in the guides section of the app");
   }
 
   if (cmd === `${prefix}no-earnings`){
@@ -144,29 +138,15 @@ bot.on("message", async message => {
     .addField("However, if this does not solve your issue then Share Tracking is likely causing the irregularity in your earnings. For more info on share tracking and how it impacts Salad users, either type ?sharetracking or read this helpful guide:", "https://medium.com/@saladchefs/the-salad-guide-to-cryptocurrency-share-tracking-ce97763edf6");
     return message.channel.send(noearningsEmbed);
   }
-  if (cmd === `${prefix}share-tracking`){
-    let sharetrackingEmbed = new Discord.RichEmbed()
-    .setDescription("Share Tracking")
-    .setColor("#50f442")
-    .addField("Share Tracking is a complicated subject, and we highly recommend users read our guide to how it works here:", "https://medium.com/@saladchefs/the-salad-guide-to-cryptocurrency-share-tracking-ce97763edf6")
-    .addField("Here's the TL;DR - ", "**Share Tracking is an accurate measure of your PC's earnings.**\n**Share Tracking makes Salad earnings appear more random.**")
 
-    return message.channel.send(sharetrackingEmbed)
-    .then(msg => {
-        message.channel.send(sharetrackingmessage);
-    })
-  }
-
-  if (cmd === `${prefix}canny`){
-    let cannyEmbed = new Discord.RichEmbed()
-    .setDescription("Canny Site")
+  if (cmd === `${prefix}freshdesk`){
+    let freshdeskEmbed = new Discord.RichEmbed()
+    .setDescription("Freshdesk Site")
     .setColor("#50f442")
-    .addField("For help with bugs, please go to the Salad Technologies Canny site found here:", "__**Click the middle link beneath Bugs**__\nhttps://www.salad.io/support/")
+    .addField("For help with bugs, please go to the Assistant for NMS site found here:", "__**Click the new support ticket button, or read the knowledge base**__\nhttps://nmsassistant.freshdesk.com/")
   }
-    return message.channel.send(cannyEmbed)
-    .then(msg => {
-      message.channel.send("This will take you to Canny, where you can log your bug, ask for help, upvote a bug you've experienced, and talk to Customer Support.");
-    })
+    return message.channel.send(freshdeskEmbed);
+      }
 });
 
 bot.login(botconfig.token);
