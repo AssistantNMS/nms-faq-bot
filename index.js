@@ -7,6 +7,7 @@ const fs = require("fs");
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online and protecting ${bot.guilds.size} servers!`);
+  bot.user.setPresence({ status: 'idle', game: { name: 'type ?help for info' } });
   bot.user.setActivity(`your FAQs`, {type: "LISTENING"});
 });
 
