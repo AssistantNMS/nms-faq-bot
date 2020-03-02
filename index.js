@@ -7,8 +7,8 @@ const fs = require("fs");
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online and protecting ${bot.guilds.size} servers!`);
-  bot.user.setPresence({ status: 'idle', game: { name: 'type ?help for info' }});
-
+  bot.user.setPresence({ status: 'idle', game: { name: '?help for info' }});
+  });
 
 bot.on("message", async message => {
   if (message.author.bot) return;
