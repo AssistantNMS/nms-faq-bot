@@ -1,6 +1,6 @@
 {
   "name": "FAQ-discord-bot",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "This FAQ is our Discord bot which supports some user-friendly commands to answer our most frequently-asked questions.",
   "main": "index.js",
   "dependencies": {

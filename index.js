@@ -10,6 +10,13 @@ bot.on("ready", async () => {
   bot.user.setPresence({ status: 'online', game: { name: '?help for info' }});
   });
 
+  bot.on("message", async message => {
+      if (message.author.bot) return;
+      if (message.isMentioned(bot.user)) {
+         message.reply("Hello! I am an FAQ Bot, type ?help for more info");
+  }
+  });
+
 bot.on("message", async message => {
   if (message.author.bot) return;
   if (message.channel.type === "dm")
@@ -21,24 +28,24 @@ bot.on("message", async message => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
-  if (cmd === `${prefix}links`) {
-    return message.channel.send("**Applications**\nWebsite: https://nmsassistant.com/\nAndroid: https://play.google.com/store/apps/details?id=com.kurtlourens.no_mans_sky_recipes\niOS: https://apps.apple.com/us/app/id1480287625\nWebApp: https://app.nmsassistant.com/\nDiscord Bot: Coming Soon\n\n**Social**\nTwitter: https://twitter.com/AssistantNMS\nInstagram: https://instagram.com/AssistantNMS\nFacebook: https://facebook.com/AssistantNMS\nSteam Community Page: https://steamcommunity.com/groups/AssistantNMS\nNoMansSky Social: https://nomanssky.social/AssistantNMS");
+  if (cmd === `${prefix}test`) {
+    return message.channel.send("This is a test. I repeat, this is a test.");
   }
 
-  if (cmd === `${prefix}test`) {
-    let test = new Discord.RichEmbed()
-      .setDescription("**This is a test**")
-      .setColor("148AFF")
-      .addField("__What is your name?__", "My name is the FAQ Bot")
-      .addField("__What server are you on?__", "Assistant for NMS");
+  if (cmd === `${prefix}links`) {
+    let links = new Discord.RichEmbed()
+      .setDescription("**Links**")
+      .setColor("#148AFF")
+      .addField("__**Applications**__", "Website: https://nmsassistant.com/\nAndroid: https://play.google.com/store/apps/details?id=com.kurtlourens.no_mans_sky_recipes\niOS: https://apps.apple.com/us/app/id1480287625\nWebApp: https://app.nmsassistant.com/\nDiscord Bot: Coming Soon")
+      .addField("__**Social**__", "Twitter: https://twitter.com/AssistantNMS\nInstagram: https://instagram.com/AssistantNMS\nFacebook: https://facebook.com/AssistantNMS\nSteam Community Page: https://steamcommunity.com/groups/AssistantNMS\nNoMansSky Social: https://nomanssky.social/AssistantNMS");
 
- return message.channel.send(test);
+ return message.channel.send(links);
     }
 
   if (cmd === `${prefix}international`) {
     let international = new Discord.RichEmbed()
       .setDescription("Information you may need if you are not based in the United States of America:")
-      .setColor("#50f442")
+      .setColor("#148AFF")
       .addField("__**Shipping**__", "Unfortunately, we cannot ship our rewards internationally yet.")
       .addField("__**Game Codes**__", "Most of our gift cards are for U.S. use only. Read the “checkout details” for region information.");
 
@@ -57,8 +64,8 @@ bot.on("message", async message => {
 
   if (cmd === `${prefix}earnings`) {
     let earnings = new Discord.RichEmbed()
-      .setDescription("__**LINKS**__")
-      .setColor("#50f442")
+      .setDescription("**Links**")
+      .setColor("#148AFF")
       .addField("How much can I earn with Salad?","https://salad.zendesk.com/hc/en-us/articles/360028553551-How-much-can-I-earn-with-Salad-")
       .addField("How can I earn more with Salad?", "https://salad.zendesk.com/hc/en-us/articles/360028257792-How-much-electricity-does-Salad-use-")
       .addField("How does Salad mine cryptocurrency?", "https://salad.zendesk.com/hc/en-us/articles/360028478512-How-can-I-earn-more-with-Salad-");
@@ -71,20 +78,20 @@ bot.on("message", async message => {
 
   if (cmd === `${prefix}systemreqs`) {
     let systemreq = new Discord.RichEmbed()
-      .setDescription("System Requirements")
-      .setColor("#50f442")
-      .addField("__**GPU REQUIREMENTS**__", "**Supported 4GB+ VRAM GPU**")
-      .addField("__**Operating System**__", " **Windows 7 or Windows 10**")
+      .setDescription("**System Requirements**")
+      .setColor("#148AFF")
+      .addField("__**OS REQUIREMENTS**__", "****")
+      .addField("__**PHONE REQUIREMENTS**__", " ****")
       .addField("__**CONNECTIVITY**__", "**Working Internet Connection**");
 
     return message.channel.send(systemreq);
   }
 
   if (cmd === `${prefix}supportticket`) {
-    let supportticket1 = ("To log your support issue and get our team working on it, please copy the format below, fill it in with your bug information, and send it to support to generate a support ticket.");
+    let supportticket1 = ("To log your support issue and get our team working on it, please copy the format below, fill it in with your bug information, and send it to support@nmsassistant.com to generate a support ticket.");
     let supportticket2 = new Discord.RichEmbed()
-      .setDescription("__**Template for a Support Ticket**__")
-      .setColor("#50f442")
+      .setDescription("**Template for a Support Ticket**")
+      .setColor("#148AFF")
       .addField("__**Description**__", "- OS\n- Phone\n- App Version")
       .addField("__**Actual Behavior**__", "*Example* \n There is a delay scrolling up the list than there is scrolling down")
       .addField("__**Expected Behavior (Optional)**__", "*Example*\nI should be able to scroll back up at the same rate and responsive that I scrolled down the list")
@@ -102,8 +109,8 @@ bot.on("message", async message => {
 
   if (cmd === `${prefix}help`) {
     let help = new Discord.RichEmbed()
-      .setDescription("__**List of Commands**__")
-      .setColor("#50f442")
+      .setDescription("**List of Commands**")
+      .setColor("#148AFF")
       .addField("__**?supportticket**__", "Find out how to get help with errors not covered on the FAQ Bot")
       .addField("__**?systemreqs**__", "View what specs you need to use the iOS or Andriod app")
       .addField("__**?links**__", "View a list of all links related to the NMS Assistant")
@@ -133,7 +140,7 @@ bot.on("message", async message => {
   if (cmd === `${prefix}no-earnings`){
     let noearningsEmbed = new Discord.RichEmbed()
     .setDescription("No Earnings")
-    .setColor("#50f442")
+    .setColor("##148AFF")
     .addField("If your app displays a zero earning rate there are several potential bugs you may be experiencing:", "1. Your Antivirus may be blocking Salad or ethminer.exe\n2. Your Graphics Card drivers may be outdated")
     .addField("These are fixable, and you can find solutions here:", "https://salad.zendesk.com/hc/en-us/categories/360001723991-Troubleshooting")
     .addField("However, if this does not solve your issue then Share Tracking is likely causing the irregularity in your earnings. For more info on share tracking and how it impacts Salad users, either type ?sharetracking or read this helpful guide:", "https://medium.com/@saladchefs/the-salad-guide-to-cryptocurrency-share-tracking-ce97763edf6");
@@ -142,9 +149,9 @@ bot.on("message", async message => {
 
   if (cmd === `${prefix}freshdesk`){
     let freshdeskEmbed = new Discord.RichEmbed()
-    .setDescription("Freshdesk Site")
-    .setColor("#50f442")
-    .addField("For help with bugs, please go to the Assistant for NMS site found here:", "__**Click the new support ticket button, or read the knowledge base**__\nhttps://nmsassistant.freshdesk.com/")
+    .setDescription("**Freshdesk Site**")
+    .setColor("#148AFF")
+    .addField("For help with bugs, please go to the Assistant for NMS site found here:", "**Click the new support ticket button, or read the knowledge base**\nhttps://nmsassistant.freshdesk.com/")
 
     return message.channel.send(freshdeskEmbed);
       }
