@@ -37,17 +37,17 @@ bot.on("message", async message => {
       .setDescription("**Links**")
       .setColor("#148AFF")
       .addField("__**Applications**__", "Website: https://nmsassistant.com/\nAndroid: https://play.google.com/store/apps/details?id=com.kurtlourens.no_mans_sky_recipes\niOS: https://apps.apple.com/us/app/id1480287625\nWebApp: https://app.nmsassistant.com/\nDiscord Bot: Coming Soon")
-      .addField("__**Social**__", "Twitter: https://twitter.com/AssistantNMS\nInstagram: https://instagram.com/AssistantNMS\nFacebook: https://facebook.com/AssistantNMS\nSteam Community Page: https://steamcommunity.com/groups/AssistantNMS\nNoMansSky Social: https://nomanssky.social/AssistantNMS");
+      .addField("__**Social**__", "Reddit: https://www.reddit.com/r/AssistantforNMS/\nTwitter: https://twitter.com/AssistantNMS\nInstagram: https://instagram.com/AssistantNMS\nFacebook: https://facebook.com/AssistantNMS\nSteam Community Page: https://steamcommunity.com/groups/AssistantNMS\nNoMansSky Social: https://nomanssky.social/AssistantNMS");
 
  return message.channel.send(links);
     }
 
-  if (cmd === `${prefix}international`) {
-    let international = new Discord.RichEmbed()
-      .setDescription("Information you may need if you are not based in the United States of America:")
+  if (cmd === `${prefix}support`) {
+    let support = new Discord.RichEmbed()
+      .setDescription("**Assistant for NMS support links**")
       .setColor("#148AFF")
-      .addField("__**Shipping**__", "Unfortunately, we cannot ship our rewards internationally yet.")
-      .addField("__**Game Codes**__", "Most of our gift cards are for U.S. use only. Read the “checkout details” for region information.");
+      .addField("__**Email**__", "You can email our support at support@nmsassistant.com, using the template found in ?supportticket")
+      .addField("__**Website**__", "Our support website can be found at https://nmsassistant.freshdesk.com, or use the links in ?freshdesk and ?faq ");
 
     return message.channel.send("We love our chefs from abroad, and while you may be earning more profit with Salad due to electricity rates, there are some drawbacks for Chefs outside of the U.S. These are:")
       .then(msg => {
@@ -111,7 +111,8 @@ bot.on("message", async message => {
     let help = new Discord.RichEmbed()
       .setDescription("**List of Commands**")
       .setColor("#148AFF")
-      .addField("__**?supportticket**__", "Find out how to get help with errors not covered on the FAQ Bot")
+      .addField("__**support**__", "View all of our support details, and the commands associated with them")
+      .addField("__**?supportticket**__", "Find out the template to use when sending an email to our support")
       .addField("__**?systemreqs**__", "View what specs you need to use the iOS or Andriod app")
       .addField("__**?links**__", "View a list of all links related to the NMS Assistant")
       .addField("__**?translation**__", "Help with translating the app!")
