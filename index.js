@@ -49,13 +49,10 @@ bot.on("message", async message => {
       .addField("__**Email**__", "You can email our support at support@nmsassistant.com, using the template found in ?supportticket")
       .addField("__**Website**__", "Our support website can be found at https://nmsassistant.freshdesk.com, or use the links in ?freshdesk and ?faq ");
 
-    return message.channel.send("We love our chefs from abroad, and while you may be earning more profit with Salad due to electricity rates, there are some drawbacks for Chefs outside of the U.S. These are:")
-      .then(msg => {
-        message.channel.send(international)
+    return message.channel.send(support)
         .then(msg => {
-          message.channel.send("We hope to solve these issues soon with local purchases and global gift cards/codes. Let us know if you have any ideas, we’d love to hear from you!");
+          message.channel.send("We hope to iron our all our major bugs ASAP. Let us know if you have any ideas, we’d love to hear from you!");
         });
-    });
   }
 
   if (cmd === `${prefix}faq`) {
