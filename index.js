@@ -36,8 +36,8 @@ bot.on("message", async message => {
     let links = new Discord.RichEmbed()
       .setDescription("**Links**")
       .setColor("#148AFF")
-      .addField("__**Applications**__", "Website: https://nmsassistant.com/\nAndroid: https://play.google.com/store/apps/details?id=com.kurtlourens.no_mans_sky_recipes\niOS: https://apps.apple.com/us/app/id1480287625\nWebApp: https://app.nmsassistant.com/\nDiscord Bot: Coming Soon")
-      .addField("__**Social**__", "Reddit: https://www.reddit.com/r/AssistantforNMS/\nTwitter: https://twitter.com/AssistantNMS\nInstagram: https://instagram.com/AssistantNMS\nFacebook: https://facebook.com/AssistantNMS\nSteam Community Page: https://steamcommunity.com/groups/AssistantNMS\nNoMansSky Social: https://nomanssky.social/AssistantNMS");
+      .addField("__**Applications**__", "Website: https://nmsassistant.com\nAndroid: https://play.google.com/store/apps/details?id=com.kurtlourens.no_mans_sky_recipes\niOS: https://apps.apple.com/us/app/id1480287625\nWebApp: https://app.nmsassistant.com\nDiscord Bot: Coming Soon")
+      .addField("__**Social**__", "Reddit: https://www.reddit.com/r/AssistantforNMS\nTwitter: https://twitter.com/AssistantNMS\nInstagram: https://instagram.com/AssistantNMS\nFacebook: https://facebook.com/AssistantNMS\nSteam Community Page: https://steamcommunity.com/groups/AssistantNMS\nNoMansSky Social: https://nomanssky.social/AssistantNMS");
 
  return message.channel.send(links);
     }
@@ -149,7 +149,7 @@ bot.on("message", async message => {
     let freshdeskEmbed = new Discord.RichEmbed()
     .setDescription("**Freshdesk Site**")
     .setColor("#148AFF")
-    .addField("For help with bugs, please go to the Assistant for NMS site found here:", "**Click the new support ticket button, or read the knowledge base**\nhttps://nmsassistant.freshdesk.com/")
+    .addField("For help with bugs, please go to the Assistant for NMS site found here:", "**Click the new support ticket button, or read the knowledge base**\nhttps://nmsassistant.freshdesk.com")
 
     return message.channel.send(freshdeskEmbed);
       }
