@@ -28,12 +28,6 @@ bot.on("ready", async () => {
            bot.sendMessage('You can only ask for help by DM, please type "help" if you need assistance!');
        }
       }
-  });
-
-bot.on("message", async message => {
-  if (message.author.bot) return;
-  if (message.channel.type === "dm")
-     message.reply("I am an FAQ bot. DMing me is a work in progress");
 
 
   let messageArray = message.content.split(" ");
