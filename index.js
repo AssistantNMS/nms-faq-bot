@@ -23,7 +23,7 @@ bot.on("ready", async () => {
       if (message.isMentioned(bot.user)) {
          message.reply("Hello! I am an FAQ Bot, type ?help for more info");
   }
-  });
+  
 
 
   let messageArray = message.content.split(" ");
@@ -38,7 +38,7 @@ bot.on("ready", async () => {
       var botMessage = "Heads up! "+bot.message.author+" would like some help with this:\n"
                        +">"+uMessage;
       // Step 2: send it to the faq-bot-dms channel
-      bot.channels.get("686177386542137369").send(botMessage);
+      bot.channels.fetch("686177386542137369").send(botMessage);
     }   
     else
       message.reply("Hi there, would you like help from a moderator?" 
