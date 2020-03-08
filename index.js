@@ -24,33 +24,48 @@ bot.on("ready", async () => {
          message.reply("Hello! I am an FAQ Bot, type ?help for more info");
   }
 
-
-
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
   // When the bot is DMed, we need to forward queries with the "?modhelp" tag to a mod
   if (message.channel.type === "dm") {
-    if ( cmd.toLowerCase() === `${prefix}modhelp` ){
+    if ( cmd.toLowerCase() === `${prefix}modhelp` ) {
+      if (args) {
+        // Step 1: Grab the user's message to be forwarded and garnish it with related info
+        var userMessage = args.join(" ");
+        const botMessageEmbed = {
+          color: 0x0099ff,
+          title: 'Mod help requested!',
+          author: {
+            name: message.author.username,
+            icon_url: message.author.displayAvatarURL(),
+          },
+          description: userMessage,
+          timestamp: new Date(),
+          footer: {
+            text: 'Message ID: ' + message.id
+          },
+        };
+        var botMessage = "Heads up! @"
+                          + message.author.username + message.author.discriminator
+                          +" would like some help with this:\n"
+                          +"> "+userMessage;
+        console.log(botMessage);
 
-      // Step 1: Grab the user's message to be forwarded and garnish it with related info
-      var uMessage = args.join(" ");
-      var botMessage = "Heads up! @"+message.author.username+message.author.discriminator+" would like some help with this:\n"
-                       +"> "+uMessage;
-      console.log(botMessage);
+        // Step 2: send it to the faq-bot-dms channel
+        const bot_faq_channel = await bot.channels.get('686177386542137369');
+        bot_faq_channel.send({embed: botMessageEmbed});
 
-      // Step 2: send it to the faq-bot-dms channel
-      // bot.channels.fetch("686177386542137369")
-      //             .send(botMessage)
-      //             .then(channel => console.log("Forwarding message to "+channel.name))
-      //             .catch(console.error);
-      const bot_faq_channel = await bot.channels.get('686177386542137369');
-      bot_faq_channel.send(botMessage);
-      message.reply("I've forwarded your query to the mods! I'll send you an answer as soon as they reply to me :)");
+        // Step 3: let the user know their query is received
+        message.reply("I've forwarded your query to the mods! I'll send you an answer as soon as they reply to me :)");
+      }    
+      else {
+        message.reply("Please enter a query!");
+      }
     }   
     else
-      message.reply("Hi there, would you like help from a moderator?" 
+      message.reply("Hi there, would you like help from a human?" 
                     +" Send me your query with the prefix `"+prefix+"modhelp`,"
                     +" and I'll find a mod to help you out!");
   }
