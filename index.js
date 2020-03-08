@@ -4,11 +4,16 @@ const Discord = require("discord.js");
 const bot = new Discord.Client({ disableEveryone: true });
 const ms = require("ms");
 const fs = require("fs");
-
-
+/* TODO: Separate the bot's replies into json files for easy editing
+*  const botResponses = ('./botResponses.json') 
+*  const faqTopics = ('./faqTopics.json')
+*  ... and so on
+*/
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online and protecting ${bot.guilds.size} servers!`);
-  bot.user.setPresence({ status: 'online', game: { name: '?help for info' }});
+  // Set bot's status as "Listening to ?help"
+  bot.user.setPresence({  status: 'online', 
+                          activity: { type:'LISTENING', name: '?help' }});
   });
 
   bot.on("message", async message => {
@@ -20,8 +25,12 @@ bot.on("ready", async () => {
 
 bot.on("message", async message => {
   if (message.author.bot) return;
-  if (message.channel.type === "dm")
-     message.reply("I am an FAQ bot. DMing me is a work in progress");
+  // When the bot is DMed, we need to forward queries with the "?help" tag to a mod
+  if (message.channel.type === "dm") {
+    
+    message.reply("I am an FAQ bot. DMing me is a work in progress");
+  }
+     
 
 
   let messageArray = message.content.split(" ");
