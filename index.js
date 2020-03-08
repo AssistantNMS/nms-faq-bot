@@ -41,11 +41,12 @@ bot.on("ready", async () => {
       console.log(botMessage);
 
       // Step 2: send it to the faq-bot-dms channel
-      bot.channels.fetch("686177386542137369")
-                  .send(botMessage)
-                  .then(channel => console.log("Forwarding message to "+channel.name))
-                  .catch(console.error);
-
+      // bot.channels.fetch("686177386542137369")
+      //             .send(botMessage)
+      //             .then(channel => console.log("Forwarding message to "+channel.name))
+      //             .catch(console.error);
+      const bot_faq_channel = await bot.channels.fetch('686177386542137369');
+      bot_faq_channel.send(botMessage);
       message.reply("I've forwarded your query to the mods! I'll send you an answer as soon as they reply to me");
     }   
     else
