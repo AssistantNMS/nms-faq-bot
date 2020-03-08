@@ -31,7 +31,7 @@ bot.on("ready", async () => {
   // When the bot is DMed, we need to forward queries with the "?modhelp" tag to a mod
   if (message.channel.type === "dm") {
     if ( cmd.toLowerCase() === `${prefix}modhelp` ) {
-      if (args) {
+      
         // Step 1: Grab the user's message to be forwarded and garnish it with related info
         var userMessage = args.join(" ");
         const botMessageEmbed = {
@@ -59,10 +59,8 @@ bot.on("ready", async () => {
 
         // Step 3: let the user know their query is received
         message.reply("I've forwarded your query to the mods! I'll send you an answer as soon as they reply to me :)");
-      }    
-      else {
-        message.reply("Please enter a query!");
-      }
+          
+      
     }   
     else
       message.reply("Hi there, would you like help from a human?" 
