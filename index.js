@@ -38,7 +38,10 @@ bot.on("ready", async () => {
       var botMessage = "Heads up! "+bot.message.author+" would like some help with this:\n"
                        +">"+uMessage;
       // Step 2: send it to the faq-bot-dms channel
-      bot.channels.fetch("686177386542137369").send(botMessage);
+      bot.channels.fetch("686177386542137369")
+                  .then(channel => console.log("Forwarding message to "+channel.name))
+                  .catch(console.error)
+                  .send(botMessage);
     }   
     else
       message.reply("Hi there, would you like help from a moderator?" 
