@@ -37,9 +37,10 @@ bot.on("ready", async () => {
         let botMessageEmbed = new Discord.RichEmbed()
           .setColor('#0099ff')
           .setTitle('Mod Help Wanted!')
-          .setAuthor(message.author.username)
-          .setDescription(userMessage);
-        
+          .setDescription(userMessage)
+          .addField('User in Distress', message.author.username)
+          .setTimestamp()
+          .setFooter('Message ID: '+message.id);
         // {
         //   color: 0x0099ff,
         //   title: 'Mod help requested!',
