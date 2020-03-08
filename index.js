@@ -24,7 +24,6 @@ bot.on("message", async message => {
      message.reply("I am an FAQ bot. DMing me is a work in progress");
 
 
-  let prefix = botconfig.prefix
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
