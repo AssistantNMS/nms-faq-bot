@@ -34,15 +34,21 @@ bot.on("ready", async () => {
       
         // Step 1: Grab the user's message to be forwarded and garnish it with related info
         var userMessage = args.join(" ");
-        const botMessageEmbed = {
-          color: 0x0099ff,
-          title: 'Mod help requested!',
-          author: {
-            name: message.author.username,
-            icon_url: message.author.displayAvatarURL(),
-          },
-          description: userMessage 
-        };
+        const botMessageEmbed = new Discord.RichEmbed()
+                                .setColor('#0099ff')
+                                .setTitle('Mod Help Wanted!')
+                                .setAuthor(message.author.username)
+                                .setDescription(userMessage);
+        
+        // {
+        //   color: 0x0099ff,
+        //   title: 'Mod help requested!',
+        //   author: {
+        //     name: message.author.username,
+        //     icon_url: message.author.displayAvatarURL(),
+        //   },
+        //   description: userMessage 
+        // };
         var botMessage = "Heads up! @"
                           + message.author.username + message.author.discriminator
                           +" would like some help with this:\n"
@@ -51,7 +57,7 @@ bot.on("ready", async () => {
 
         // Step 2: send it to the faq-bot-dms channel
         const bot_faq_channel = await bot.channels.get('686177386542137369');
-        bot_faq_channel.send({embed: botMessageEmbed});
+        bot_faq_channel.send(botMessageEmbed);
 
         // Step 3: let the user know their query is received
         message.reply("I've forwarded your query to the mods! I'll send you an answer as soon as they reply to me :)");
