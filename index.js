@@ -41,9 +41,7 @@ bot.on("ready", async () => {
             name: message.author.username,
             icon_url: message.author.displayAvatarURL(),
           },
-          description: userMessage,
-          timestamp: new Date(),
-          
+          description: userMessage 
         };
         var botMessage = "Heads up! @"
                           + message.author.username + message.author.discriminator
