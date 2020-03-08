@@ -36,8 +36,8 @@ bot.on("ready", async () => {
 
       // Step 1: Grab the user's message to be forwarded and garnish it with related info
       var uMessage = args.join(" ");
-      var botMessage = "Heads up! "+message.author.username+" would like some help with this:\n"
-                       +">"+uMessage;
+      var botMessage = "Heads up! @"+message.author.username+message.author.discriminator+" would like some help with this:\n"
+                       +"> "+uMessage;
       console.log(botMessage);
 
       // Step 2: send it to the faq-bot-dms channel
@@ -47,7 +47,7 @@ bot.on("ready", async () => {
       //             .catch(console.error);
       const bot_faq_channel = await bot.channels.get('686177386542137369');
       bot_faq_channel.send(botMessage);
-      message.reply("I've forwarded your query to the mods! I'll send you an answer as soon as they reply to me");
+      message.reply("I've forwarded your query to the mods! I'll send you an answer as soon as they reply to me :)");
     }   
     else
       message.reply("Hi there, would you like help from a moderator?" 
