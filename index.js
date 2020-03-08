@@ -33,7 +33,7 @@ bot.on("ready", async () => {
   // When the bot is DMed, we need to forward queries with the "?modhelp" tag to a mod
   if (message.channel.type === "dm") {
     if ( cmd.toLowerCase() === `${prefix}modhelp` ){
-      
+
       // Step 1: Grab the user's message to be forwarded and garnish it with related info
       var uMessage = args.join(" ");
       var botMessage = "Heads up! "+message.author.username+" would like some help with this:\n"
@@ -46,7 +46,7 @@ bot.on("ready", async () => {
                   .then(channel => console.log("Forwarding message to "+channel.name))
                   .catch(console.error);
 
-      message.reply("I've forwarded your query to the mods! I'll send you an answer as soon as they reply to me :)");
+      message.reply("I've forwarded your query to the mods! I'll send you an answer as soon as they reply to me");
     }   
     else
       message.reply("Hi there, would you like help from a moderator?" 
