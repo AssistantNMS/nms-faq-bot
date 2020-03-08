@@ -124,4 +124,5 @@ bot.on("message", async message => {
       }
 });
 
+bot.prefix(prefix);
 bot.login(token);
