@@ -43,9 +43,7 @@ bot.on("ready", async () => {
           },
           description: userMessage,
           timestamp: new Date(),
-          footer: {
-            text: 'Message ID: ' + message.id
-          },
+          
         };
         var botMessage = "Heads up! @"
                           + message.author.username + message.author.discriminator
