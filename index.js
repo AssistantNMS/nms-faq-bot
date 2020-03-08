@@ -5,10 +5,17 @@ const bot = new Discord.Client({ disableEveryone: true });
 const ms = require("ms");
 const fs = require("fs");
 
+/* TODO: Separate the bot's replies into json files for easy editing
+*  const botResponses = ('./botResponses.json') 
+*  const faqTopics = ('./faqTopics.json')
+*  ... and so on
+*/
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online and protecting ${bot.guilds.size} servers!`);
-  bot.user.setPresence({ status: 'online', game: { name: '?help for info' }});
+  // Set bot's status as "Listening to ?help"
+  bot.user.setPresence({  status: 'online', 
+                          activity: { type:'LISTENING', name: `${prefix}help` }});
   });
 
   bot.on("message", async message => {
@@ -18,22 +25,28 @@ bot.on("ready", async () => {
   }
   });
 
-  bot.on('message', async message => {
-    if(message.channel.DMChannel) {
-       if(message.content.toLowerCase() == 'help') {
-          console.log('User ' + member.user.username + ' is requesting assitance. Now alerting staff members!');
-          bot.channels.get("686177386542137369").send('**' + member.user.username + '**, is requesting staff assitance. Now alerting staff members!')
-          bot.sendMessage('I helped you! A staff member will respond soon!');
-       } else {
-           bot.sendMessage('You can only ask for help by DM, please type "help" if you need assistance!');
-       }
-      }
-
 
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
+  // When the bot is DMed, we need to forward queries with the "?modhelp" tag to a mod
+  if (message.channel.type === "dm") {
+    if ( cmd.toLowerCase() === `${prefix}modhelp` ){
+      // Step 1: Grab the user's message to be forwarded and garnish it with related info
+      var uMessage = args.join(" ");
+      var botMessage = "Heads up! "+bot.message.author+" would like some help with this:\n"
+                       +">"+uMessage;
+      // Step 2: send it to the faq-bot-dms channel
+      bot.channels.get("686177386542137369").send(botMessage);
+    }   
+    else
+      message.reply("Hi there, would you like help from a moderator?" 
+                    +" Send me your query with the prefix `"+prefix+"modhelp`,"
+                    +" and I'll find a mod to help you out!");
+  }
+
+  // These are server-wide replies
   if (cmd === `${prefix}test`) {
     return message.channel.send("This is a test. I repeat, this is a test.");
   }
