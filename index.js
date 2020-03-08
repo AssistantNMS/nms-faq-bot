@@ -18,11 +18,11 @@ bot.on("ready", async () => {
   }
   });
 
-  bot.on('message', (message) => {
-  if(message.channel.DMChannel) {
+  bot.on('message', async message => {
+    if(message.channel.DMChannel) {
        if(message.content.toLowerCase() == 'help') {
           console.log('User ' + member.user.username + ' is requesting assitance. Now alerting staff members!');
-          bot.channels.get("397707437781680130").send('**' + member.user.username + '**, is requesting staff assitance. Now alerting staff members!')
+          bot.channels.get("686177386542137369").send('**' + member.user.username + '**, is requesting staff assitance. Now alerting staff members!')
           bot.sendMessage('I helped you! A staff member will respond soon!');
        } else {
            bot.sendMessage('You can only ask for help by DM, please type "help" if you need assistance!');
