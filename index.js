@@ -23,7 +23,7 @@ bot.on("ready", async () => {
       if (message.isMentioned(bot.user)) {
          message.reply("Hello! I am an FAQ Bot, type ?help for more info");
   }
-  
+
 
 
   let messageArray = message.content.split(" ");
