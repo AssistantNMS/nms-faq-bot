@@ -45,7 +45,7 @@ bot.on("ready", async () => {
       //             .send(botMessage)
       //             .then(channel => console.log("Forwarding message to "+channel.name))
       //             .catch(console.error);
-      const bot_faq_channel = await bot.channels.fetch('686177386542137369');
+      const bot_faq_channel = await bot.channels.get('686177386542137369');
       bot_faq_channel.send(botMessage);
       message.reply("I've forwarded your query to the mods! I'll send you an answer as soon as they reply to me");
     }   
