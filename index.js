@@ -14,8 +14,8 @@ const fs = require("fs");
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online and protecting ${bot.guilds.size} servers!`);
   // Set bot's status as "Listening to ?help"
-  bot.user.setPresence({  status: 'online', 
-                          activity: { type:'LISTENING', name: `${prefix}help` }});
+  bot.user.setPresence({  status: 'online'});
+  bot.user.setActivity('?help', {type:'LISTENING'});
   });
 
   bot.on("message", async message => {
