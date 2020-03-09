@@ -16,6 +16,7 @@ bot.on("ready", async () => {
   // Set bot's status as "Listening to ?help"
   bot.user.setPresence({  status: 'online'});
   bot.user.setActivity('?help', {type:'LISTENING'});
+  bot.user.guildSettings.
   });
 
   bot.on("message", async message => {
@@ -37,7 +38,7 @@ bot.on("ready", async () => {
         let botMessageEmbed = new Discord.RichEmbed()
           .setColor('#0099ff')
           .setTitle('Mod Help Wanted!')
-          .setDescription(userMessage)
+          .addField('Problem',userMessage)
           .addField('User in Distress', message.author.username)
           .setTimestamp()
           .setFooter('Message ID: '+message.id);
