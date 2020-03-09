@@ -37,7 +37,7 @@ bot.on("ready", async () => {
         let botMessageEmbed = new Discord.MessageEmbed()
           .setColor('#0099ff')
           .setTitle('Mod Help Wanted!')
-          .setDescription(' ')
+          .setDescription('I got a query for you guys to tackle!')
           .addField("Problem",userMessage)
           .addField('User in Distress', message.author.username)
           .setTimestamp()
