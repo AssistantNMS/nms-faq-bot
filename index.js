@@ -34,7 +34,7 @@ bot.on("ready", async () => {
       
         // Step 1: Grab the user's message to be forwarded and garnish it with related info
         var userMessage = args.join(" ");
-        let botMessageEmbed = new Discord.RichEmbed()
+        let botMessageEmbed = new Discord.MessageEmbed()
           .setColor('#0099ff')
           .setTitle('Mod Help Wanted!')
           .setDescription(userMessage)
