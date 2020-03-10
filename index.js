@@ -6,8 +6,8 @@ const fs = require("fs");
 const token = process.env.BOT_TOKEN;
 const prefix = process.env.BOT_PREFIX;
 
-const botVersion = 'orgRepo.v3';      // Something temporary to keep track of changes
-const faqChannel = '686177386542137369';
+const botVersion = '1.2.2';      // Something temporary to keep track of changes
+const faqChannel = '686177386542137369', '639553928136228864';
 
 /* TODO: Separate the bot's replies into json files for easy editing
 *  const botResponses = ('./botResponses.json') 
