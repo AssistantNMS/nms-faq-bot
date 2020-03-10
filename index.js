@@ -6,7 +6,7 @@ const fs = require("fs");
 const token = process.env.BOT_TOKEN;
 const prefix = process.env.BOT_PREFIX;
 
-const botVersion = '1.2.2';      // Something temporary to keep track of changes
+const botVersion = ' 1.2.2';      // Something temporary to keep track of changes
 const faqChannel = '686177386542137369';
 const devChannel = '639553928136228864';
 
