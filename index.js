@@ -34,10 +34,10 @@ bot.on("ready", async () => {
       
         // Step 1: Grab the user's message to be forwarded and garnish it with related info
         var userMessage = args.join(" ");
-        let botMessageEmbed = new Discord.RichEmbed()
+        const botMessageEmbed = new Discord.RichEmbed()
           .setColor('#0099ff')
           .setTitle('Mod Help Wanted!')
-          .setDescription('I got a query for you guys to tackle!')
+          //.setDescription('I got a query for you guys to tackle!')
           .addField('Problem', userMessage)
           .addField('User in Distress', message.author.username)
           .setTimestamp()
