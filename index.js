@@ -69,7 +69,8 @@ bot.on("ready", async () => {
     else
       message.reply("Hi there, would you like help from a human?" 
                     +" Send me your query with the prefix `"+prefix+"modhelp`,"
-                    +" and I'll find a mod to help you out!");
+                    +" and I'll find a mod to help you out!"
+                    +"\nInternal bot version: orgrepo.2");
   }
 
   // These are server-wide replies
