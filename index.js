@@ -1,9 +1,13 @@
-const token = process.env.BOT_TOKEN;
-const prefix = process.env.BOT_PREFIX;
 const Discord = require("discord.js");
 const bot = new Discord.Client({ disableEveryone: true });
 const ms = require("ms");
 const fs = require("fs");
+// Fetch config information from Heroku config vars
+const token = process.env.BOT_TOKEN;
+const prefix = process.env.BOT_PREFIX;
+
+const botVersion = 'orgRepo.v3';      // Something temporary to keep track of changes
+const faqChannel = '686177386542137369';
 
 /* TODO: Separate the bot's replies into json files for easy editing
 *  const botResponses = ('./botResponses.json') 
@@ -37,7 +41,6 @@ bot.on("ready", async () => {
         const botMessageEmbed = new Discord.RichEmbed()
           .setColor('#0099ff')
           .setTitle('Mod Help Wanted!')
-          //.setDescription('I got a query for you guys to tackle!')
           .addField('Problem', userMessage)
           .addField('User in Distress', message.author.username)
           .setTimestamp()
@@ -58,7 +61,7 @@ bot.on("ready", async () => {
         console.log(botMessage);
 
         // Step 2: send it to the faq-bot-dms channel
-        const bot_faq_channel = await bot.channels.get('686177386542137369');
+        const bot_faq_channel = bot.channels.get(faqChannel);
         bot_faq_channel.send(botMessageEmbed);
 
         // Step 3: let the user know their query is received
@@ -69,13 +72,17 @@ bot.on("ready", async () => {
     else
       message.reply("Hi there, would you like help from a human?" 
                     +" Send me your query with the prefix `"+prefix+"modhelp`,"
-                    +" and I'll find a mod to help you out!"
-                    +"\nInternal bot version: orgrepo.2");
+                    +" and I'll find a mod to help you out!");
   }
 
   // These are server-wide replies
   if (cmd === `${prefix}test`) {
     return message.channel.send("This is a test. I repeat, this is a test.");
+  }
+
+  if (cmd === `${prefix}version`) {
+    if(message.channel.id === faqChannel)  // Only reply to queries on the faq-bot-dms channel
+      return message.channel.send('Bot internal version:'+botVersion);
   }
 
   if (cmd === `${prefix}links`) {
