@@ -81,9 +81,9 @@ bot.on("ready", async () => {
   if (message.channel.type === "dm") {
     if ( cmd.toLowerCase() === `${prefix}info` ) {
       message.reply("I'm an FAQ Bot, made by Vapour38 and Blend3rman to be used on the AssistantforNMS Discord server, which can be found here: https://discord.gg/sVF32Pq"
-                    +"On the server, I have a list of FAQs which can be accessed by typing their command. A list of commands can be found by typing `"+prefix+"help` on the server."\n
-                    +"I also have a list of commands that can be used right here! By using `"+prefix+"info` right here, you can bring this message up."\n
-                    +"By using `"+prefix+"help`, then your message, you can send a message to the mods at the AssistantforNMS asking for help. They will reply to you here."\n
+                    +"On the server, I have a list of FAQs which can be accessed by typing their command. A list of commands can be found by typing `"+prefix+"help` on the server."
+                    +"I also have a list of commands that can be used right here! By using `"+prefix+"info` right here, you can bring this message up."
+                    +"By using `"+prefix+"help`, then your message, you can send a message to the mods at the AssistantforNMS asking for help. They will reply to you here."
                     +"By using `"+prefix+"suggest`, then your suggestion, you can suggest an FAQ to the mods, which they will review and possibly add to the bot. A suggestion can range from anything from a question you want answered, to a bug you have found a fix for.");
   }
   else
