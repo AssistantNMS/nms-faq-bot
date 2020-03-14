@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const moment = require('moment');
 const bot = new Discord.Client({ disableEveryone: true });
 const ms = require("ms");
 const fs = require("fs");
@@ -6,7 +7,7 @@ const fs = require("fs");
 const token = process.env.BOT_TOKEN;
 const prefix = process.env.BOT_PREFIX;
 
-const botVersion = ' 1.2.3';      // Something temporary to keep track of changes
+const botVersion = process.env.HEROKU_RELEASE_VERSION;      // Now pulls the version information direct from Heroku!
 const faqChannel = '686177386542137369';
 const devChannel = '639553928136228864';
 

@@ -6,6 +6,8 @@
   "dependencies": {
     "discord.js": "^11.6.1",
     "fs": "0.0.1-security",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.28",
     "ms": "^2.1.2"
   },
   "devDependencies": {},
