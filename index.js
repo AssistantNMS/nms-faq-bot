@@ -19,7 +19,7 @@ const devChannel = '639553928136228864';
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online and protecting ${bot.guilds.size} servers!`);
   // Set bot's status as "Listening to ?help"
-  bot.user.setPresence({  status: 'online'});
+  bot.user.setPresence({status: 'online'});
   bot.user.setActivity('?help', {type:'LISTENING'});
   });
 
@@ -81,10 +81,10 @@ bot.on("ready", async () => {
     }
     else
       message.reply("Hi there, would you like help from a human? Or would you like to suggest an FAQ or just get general info on me?"
-                    +" Send me your query with `"+prefix+"help`,"
+                    +" Send me your query with `"+prefix+"help <your question>`,"
                     +" and I'll find a mod to help you out!"
-                    +"If you want to suggest and FAQ, type `"+prefix+"suggest`."
-                    +"Or, if you want some info on what I do, type `"+prefix+"info`.");
+                    +" If you want to suggest an FAQ or suggestion for the server, type `"+prefix+"suggest <your message>`."
+                    +" Or, if you want some info on what I do, type `"+prefix+"info`.");
   }
 
 
