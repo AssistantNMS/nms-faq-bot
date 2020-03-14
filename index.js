@@ -104,7 +104,7 @@ bot.on("ready", async () => {
   }
 
   if (cmd === `${prefix}members`) {
-    if(message.channel.id === devChannel)
+    if(message.channel.id === developer)
       return message.channel.send(`Current # of Members: ${guild.memberCount}`)
  }
 
