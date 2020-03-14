@@ -9,6 +9,7 @@ const prefix = process.env.BOT_PREFIX;
 const botVersion = ' 1.2.3';      // Something temporary to keep track of changes
 const faqChannel = '686177386542137369';
 const devChannel = '639553928136228864';
+id = client.get_guild(625007826913198080)
 
 /* TODO: Separate the bot's replies into json files for easy editing
 *  const botResponses = ('./botResponses.json')
@@ -70,21 +71,20 @@ bot.on("ready", async () => {
 
 
     }
-    if (message.channel.type === "dm") {
+    if (message.channel.type === "dm")
       if ( cmd.toLowerCase() === `${prefix}info` ) {
-        message.reply("I'm an FAQ Bot, made by Vapour38 and Blend3rman to be used on the AssistantforNMS Discord server, which can be found here: https://discord.gg/sVF32Pq"
-                      +"On the server, I have a list of FAQs which can be accessed by typing their command. A list of commands can be found by typing `"+prefix+"help` on the server."
-                      +"I also have a list of commands that can be used right here! By using `"+prefix+"info` right here, you can bring this message up."
-                      +"By using `"+prefix+"help`, then your message, you can send a message to the mods at the AssistantforNMS asking for help. They will reply to you here."
-                      +"By using `"+prefix+"suggest`, then your suggestion, you can suggest an FAQ to the mods, which they will review and possibly add to the bot. A suggestion can range from anything from a question you want answered, to a bug you have found a fix for.");
-    }
+        message.reply("I'm an FAQ Bot, made by Vapour38 and Blend3rman to be used on the AssistantforNMS Discord server, which can be found here: https://discord.gg/HtYgu4G"
+                      +" On the server, I have a list of FAQs which can be accessed by typing their command. A list of commands can be found by typing `"+prefix+"help` on the server."
+                      +" I also have a list of commands that can be used right here! By using `"+prefix+"info` right here, you can bring this message up."
+                      +" By using `"+prefix+"help`, then your message, you can send a message to the mods at the AssistantforNMS asking for help. They will reply to you here."
+                      + "By using `"+prefix+"suggest`, then your suggestion, you can suggest an FAQ to the mods, which they will review and possibly add to the bot. A suggestion can range from anything from a question you want answered, to a bug you have found a fix for.");
     }
     else
       message.reply("Hi there, would you like help from a human? Or would you like to suggest an FAQ or just get general info on me?"
                     +" Send me your query with `"+prefix+"help`,"
                     +" and I'll find a mod to help you out!"
-                    +"If you want to suggest and FAQ, type `"+prefix+"suggest`."
-                    +"Or, if you want some info on what I do, type `"+prefix+"info`.");
+                    +" If you want to suggest and FAQ, type `"+prefix+"suggest`."
+                    +" Or, if you want some info on what I do, type `"+prefix+"info`.");
   }
 
 
@@ -99,12 +99,25 @@ bot.on("ready", async () => {
       return message.channel.send('Bot internal version:'+botVersion);
   }
 
+  if (cmd === `${prefix}reply`) {
+    if (message.channel.id === faqChannel) //Only works in the faq-bot-dms channel
+      return message.channel.send("")
+  }
+
+@client.event
+async def on_message(message):
+    id = client.get_guild(ID)
+
+ if (cmd === `${prefix}users`) {
+    return message.channel.send("# of Members: "+id.member_count)
+  }
+
   if (cmd === `${prefix}links`) {
     let links = new Discord.RichEmbed()
       .setDescription("**Links**")
       .setColor("#148AFF")
       .addField("__**Applications**__", "Website: https://nmsassistant.com\nAndroid: https://play.google.com/store/apps/details?id=com.kurtlourens.no_mans_sky_recipes\niOS: https://apps.apple.com/us/app/id1480287625\nWebApp: https://app.nmsassistant.com\nDiscord Bot: Coming Soon")
-      .addField("__**Social**__", "Reddit: https://www.reddit.com/r/AssistantforNMS\nTwitter: https://twitter.com/AssistantNMS\nInstagram: https://instagram.com/AssistantNMS\nFacebook: https://facebook.com/AssistantNMS\nSteam Community Page: https://steamcommunity.com/groups/AssistantNMS\nNoMansSky Social: https://nomanssky.social/AssistantNMS");
+      .addField("__**Social**__", "Reddit: https://www.reddit.com/r/AssistantNMS\nTwitter: https://twitter.com/AssistantNMS\nInstagram: https://instagram.com/AssistantNMS\nFacebook: https://facebook.com/AssistantNMS\nSteam Community Page: https://steamcommunity.com/groups/AssistantNMS\nNoMansSky Social: https://nomanssky.social/AssistantNMS");
 
  return message.channel.send(links);
     }
