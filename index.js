@@ -7,9 +7,10 @@ const token = process.env.BOT_TOKEN;
 const prefix = process.env.BOT_PREFIX;
 
 const botVersion = ' 1.2.3';      // Something temporary to keep track of changes
-const guild = bot.guilds.get("625007826913198080");
 const faqChannel = '686177386542137369';
 const devChannel = '639553928136228864';
+id = client.get_guild(625007826913198080)
+
 /* TODO: Separate the bot's replies into json files for easy editing
 *  const botResponses = ('./botResponses.json')
 *  const faqTopics = ('./faqTopics.json')
@@ -99,14 +100,17 @@ bot.on("ready", async () => {
   }
 
   if (cmd === `${prefix}reply`) {
-    if(message.channel.id === faqChannel) //Only works in the faq-bot-dms channel
+    if (message.channel.id === faqChannel) //Only works in the faq-bot-dms channel
       return message.channel.send("")
   }
 
-  if (cmd === `${prefix}members`) {
-    if(message.channel.id === developer)
-      return message.channel.send(`Current # of Members: ${guild.memberCount}`)
- }
+@client.event
+async def on_message(message):
+    id = client.get_guild(ID)
+
+ if (cmd === `${prefix}users`) {
+    return message.channel.send("# of Members: "+id.member_count)
+  }
 
   if (cmd === `${prefix}links`) {
     let links = new Discord.RichEmbed()

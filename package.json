@@ -4,7 +4,7 @@
   "description": "This FAQ is our Discord bot which supports some user-friendly commands to answer our most frequently-asked questions.",
   "main": "index.js",
   "dependencies": {
-    "discord.js": "^11.6.2",
+    "discord.js": "^11.6.1",
     "fs": "0.0.1-security",
     "ms": "^2.1.2"
   },
