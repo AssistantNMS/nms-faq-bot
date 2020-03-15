@@ -133,12 +133,11 @@ bot.on("ready", async () => {
   }
 
   if (cmd === `${prefix}time`) {
-    const nowTime = Date.now();
-    var sysTime = moment.unix(nowTime).tz;
+    const sysTime = moment().toDate();
     console.log(prefix+'time was called at '+sysTime);
     // var sysZoneAbbr = sysTime.zoneAbbr();
     // return message.channel.send("Current system time: "+sysTime+" ("+sysZoneAbbr+")");
-    return message.channel.send("Current system time: "+nowTime);
+    return message.channel.send("Current system time: "+sysTime);
   }
 
   if (cmd === `${prefix}supportticket`) {
