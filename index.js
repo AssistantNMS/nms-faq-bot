@@ -32,7 +32,10 @@ bot.on("ready", async () => {
   bot.on("message", async message => {
       if (message.author.bot) return;
       if (message.isMentioned(bot.user)) {
-         message.reply("Hello! I am an FAQ Bot, type ?help for more info");
+        const droneEye = bot.emojis.find(emoji => emoji.name === "DroneEyeBlue");
+        message.react(droneEye)
+        .then(console.log)
+        .catch(console.error);
   }
 
   let messageArray = message.content.split(" ");
