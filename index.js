@@ -97,7 +97,7 @@ bot.on("ready", async () => {
 
   if (cmd === `${prefix}version`) {
     if(message.channel.id === faqChannel, devChannel)  // Only reply to queries on the faq-bot-dms or developer channel
-      return message.channel.send('Bot internal version:'+botVersion);
+      return message.channel.send('Bot internal version:' +botVersion);
   }
 
   if (cmd === `${prefix}links`) {
