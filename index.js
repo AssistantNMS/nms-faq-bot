@@ -1,24 +1,29 @@
 const Discord = require("discord.js");
-const moment = require('moment');
+const moment = require('moment-timezone');
 const bot = new Discord.Client({ disableEveryone: true });
 const ms = require("ms");
 const fs = require("fs");
+
 // Fetch config information from Heroku config vars
 const token = process.env.BOT_TOKEN;
 const prefix = process.env.BOT_PREFIX;
+const botVersion = process.env.HEROKU_RELEASE_VERSION;      
+const botReleaseUTC = process.env.HEROKU_RELEASE_CREATED_AT;
 
-const botVersion = process.env.HEROKU_RELEASE_VERSION;      // Now pulls the version information direct from Heroku!
 const faqChannel = '686177386542137369';
 const devChannel = '639553928136228864';
 
+// Set the bot's timezone to the server's timezone (UTC)
+moment.tz.setDefault();
+
 /* TODO: Separate the bot's replies into json files for easy editing
-*  const botResponses = ('./botResponses.json')
-*  const faqTopics = ('./faqTopics.json')
-*  ... and so on
-*/
+ *  const botResponses = ('./botResponses.json')
+ *  const faqTopics = ('./faqTopics.json')
+ *  ... and so on
+ */
 
 bot.on("ready", async () => {
-  console.log(`${bot.user.username} is online and protecting ${bot.guilds.size} servers!`);
+  console.log(`${bot.user.username} is online. Current Prefix: ${prefix}`);
   // Set bot's status as "Listening to ?help"
   bot.user.setPresence({status: 'online'});
   bot.user.setActivity('?help', {type:'LISTENING'});
@@ -97,7 +102,7 @@ bot.on("ready", async () => {
 
   if (cmd === `${prefix}version`) {
     if(message.channel.id === faqChannel, devChannel)  // Only reply to queries on the faq-bot-dms or developer channel
-      return message.channel.send('Bot internal version:'+botVersion);
+      return message.channel.send('Bot build version: '+botVersion);
   }
 
   if (cmd === `${prefix}links`) {
@@ -107,8 +112,8 @@ bot.on("ready", async () => {
       .addField("__**Applications**__", "Website: https://nmsassistant.com\nAndroid: https://play.google.com/store/apps/details?id=com.kurtlourens.no_mans_sky_recipes\niOS: https://apps.apple.com/us/app/id1480287625\nWebApp: https://app.nmsassistant.com\nDiscord Bot: Coming Soon")
       .addField("__**Social**__", "Reddit: https://www.reddit.com/r/AssistantforNMS\nTwitter: https://twitter.com/AssistantNMS\nInstagram: https://instagram.com/AssistantNMS\nFacebook: https://facebook.com/AssistantNMS\nSteam Community Page: https://steamcommunity.com/groups/AssistantNMS\nNoMansSky Social: https://nomanssky.social/AssistantNMS");
 
- return message.channel.send(links);
-    }
+    return message.channel.send(links);
+  }
 
   if (cmd === `${prefix}support`) {
     let support = new Discord.RichEmbed()
@@ -127,15 +132,10 @@ bot.on("ready", async () => {
     return message.channel.send("If you can’t find the answers you’re looking for here, try checking out our full FAQ on Freshdesk: https://nmsassistant.freshdesk.com/");
   }
 
-  if (cmd === `${prefix}systemreqs`) {
-    let systemreq = new Discord.RichEmbed()
-      .setDescription("**System Requirements**")
-      .setColor("#148AFF")
-      .addField("__**OS REQUIREMENTS**__", "****")
-      .addField("__**PHONE REQUIREMENTS**__", " ****")
-      .addField("__**CONNECTIVITY**__", "**Working Internet Connection**");
-
-    return message.channel.send(systemreq);
+  if (cmd === `${prefix}time`) {
+    var sysTime = moment(Date.now()).tz;
+    var sysZoneAbbr = sysTime.zoneAbbr();
+    return message.channel.send("Current system time: "+sysTime+" ("+sysZoneAbbr+")");
   }
 
   if (cmd === `${prefix}supportticket`) {
