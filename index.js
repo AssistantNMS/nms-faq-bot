@@ -133,8 +133,8 @@ bot.on("ready", async () => {
   }
 
   if (cmd === `${prefix}time`) {
-    var nowTime = Date.now();
-    var sysTime = moment.unix(nowTime).tz;
+    var nowTime = new Date;
+    var sysTime = moment.unix(nowTime.now()).tz;
     console.log(prefix+'time was called at '+sysTime);
     // var sysZoneAbbr = sysTime.zoneAbbr();
     // return message.channel.send("Current system time: "+sysTime+" ("+sysZoneAbbr+")");
