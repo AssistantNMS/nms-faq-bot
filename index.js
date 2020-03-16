@@ -112,12 +112,14 @@ bot.on("ready", async () => {
         const confuseDrone = bot.emojis.find(emoji => emoji.name === "DroneConfused");
 
         // Make the bot react to every command with the Question emoji, unless it's just the prefix
-        if(args != null) {
-          message.react(questionDrone)
-            .then(console.log)
-            .catch(console.error);
+        if(args === null) {
+          return;
         }
         
+        message.react(questionDrone)
+          .then(console.log)
+          .catch(console.error);
+
         if (cmd === `${prefix}test`) {
           return message.channel.send("System test concluded. All parameters within operational limits.");
         }
