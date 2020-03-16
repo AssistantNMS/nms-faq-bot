@@ -216,9 +216,9 @@ bot.on("ready", async () => {
           // react with the corruptDrone emoji and inform of invalid command
           // Remove previous atlas message reaction
           
-          const reactList = await message.reactions.cache.get(questionDrone.id);
-          
-          reactList.remove()
+          const reactList = await message.reactions.cache;
+          const oldReact = reactList.get(questionDrone.id);
+          oldReact.remove()
             .catch(error => console.error('Failed to remove reactions: ', error));
            
           if(args === null) return;
