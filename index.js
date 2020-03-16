@@ -107,16 +107,16 @@ bot.on("ready", async () => {
       // respond/react to only msgs with the prefix at the start of msg
       if( cmd.startsWith(prefix) ) {
         // Get the bot-specific emojis by name
-        const atlasMsg = bot.emojis.find(emoji => emoji.name === "AtlasMessage");
-        const corruptDrone = bot.emojis.find(emoji => emoji.name === "corruptedDrone");
-        
-        // Make the bot react to every command with the Atlas Message emoji
-        message.react(atlasMsg)
+        const questionDrone = bot.emojis.find(emoji => emoji.name === "DroneQuestion");
+        const confuseDrone = bot.emojis.find(emoji => emoji.name === "DroneConfused");
+
+        // Make the bot react to every command with the Question emoji
+        message.react(questionDrone)
         .then(console.log)
         .catch(console.error);
       
         if (cmd === `${prefix}test`) {
-          return message.channel.send("This is a test. I repeat, this is a test.");
+          return message.channel.send("System test concluded. All parameters within operational limits.");
         }
 
         else if (cmd === `${prefix}version`) {
@@ -215,10 +215,11 @@ bot.on("ready", async () => {
           // If the message contained the prefix but was not a valid command, 
           // react with the corruptDrone emoji and inform of invalid command
           // Remove previous atlas message reaction
-          message.reactions.get(atlasMsg.id).remove()
-            .catch(error => console.error('Failed to remove reactions: ', error));
+          if(args === null) return;
+          // message.reactions.get(questionDrone.id).remove()
+          //   .catch(error => console.error('Failed to remove reactions: ', error));
           
-          message.react(atlasMsg)
+          message.react(confuseDrone)
             .then(console.log)
             .catch(console.error);
           
