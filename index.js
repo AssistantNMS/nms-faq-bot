@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const moment = require('moment-timezone');
-const bot = new Discord.Client({ disableEveryone: true });
+const bot = new Discord.Client({ disableEveryone: true,
+                                 partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 const ms = require("ms");
 const fs = require("fs");
 
@@ -96,6 +97,7 @@ bot.on("message", async message => {
         reaction[1].remove();
       }
       await message.react(confuseDrone);
+
 
       return message.channel.send("ERROR: Unrecognized command. Unable to assist.");
     }

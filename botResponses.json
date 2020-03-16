@@ -1,0 +1,9 @@
+{
+    "forwardedMsgEmbed":{
+        "color" :   "#0099ff",
+        "title" :   "Mod Help Wanted!",
+        "FieldHead1"    :   "Problem",
+        "FieldHead2"    :   "User in Distress",
+        "FooterHead"    :   "Message ID"
+    }
+}
