@@ -1,7 +1,9 @@
 const Discord = require("discord.js");
 const moment = require('moment-timezone');
-const bot = new Discord.Client({ disableEveryone: true,
-                                 partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
+const bot = new Discord.Client({
+  disableEveryone: true,
+  partials: ['MESSAGE', 'CHANNEL', 'REACTION']
+});
 const ms = require("ms");
 const fs = require("fs");
 
@@ -55,7 +57,7 @@ bot.on("message", async message => {
     console.log("Direct Message");
     // The bot will forward all queries with the <prefix>help command to the faqchannel
     if (cmd.toLowerCase() === `${prefix}help`) {
-      helpCommands.directMessage(bot, message, args, faqChannel);
+      helpCommands.directMessage(bot, message, args);
     }
     else if (cmd.toLowerCase() === `${prefix}info`) { // Nice infobox
       infoCommands.infoResponse(message, prefix);
