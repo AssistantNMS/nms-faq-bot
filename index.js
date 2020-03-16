@@ -2,7 +2,8 @@ const Discord = require("discord.js");
 const moment = require('moment-timezone');
 const bot = new Discord.Client({ disableEveryone: true,
                                  partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
-
+const ms = require("ms");
+const fs = require("fs");
 
 const helpCommands = require('./command/help');
 const infoCommands = require('./command/info');
