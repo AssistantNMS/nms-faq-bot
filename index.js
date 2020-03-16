@@ -172,15 +172,12 @@ bot.on("message", async message => {
       // react with the corruptDrone emoji and inform of invalid command
       // Remove previous atlas message reaction
 
-      const reactList = await message.reactions;
-      const oldReact = reactList.cache.get(questionDrone.id);
-      oldReact.remove()
-        .catch(error => console.error('Failed to remove reactions: ', error));
-
-      if (args === null) return;
-      message.react(confuseDrone)
-        .then(console.log)
-        .catch(console.error);
+      let reactions = await message.reactions;
+      for (const reaction of reactions) {
+        if (!reaction[0].includes(questionDrone.id)) continue;
+        reaction[1].remove();
+      }
+      await message.react(confuseDrone);
 
       return message.channel.send("ERROR: Unrecognized command. Unable to assist.");
     }
