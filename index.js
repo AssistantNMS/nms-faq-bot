@@ -14,8 +14,6 @@ const timeCommands = require('./command/time');
 // Fetch config information from Heroku config vars
 const token = process.env.BOT_TOKEN;
 const prefix = process.env.BOT_PREFIX;
-const botVersion = process.env.HEROKU_RELEASE_VERSION;
-const botReleaseUTC = process.env.HEROKU_RELEASE_CREATED_AT;
 
 // Set the bot's timezone to the server's timezone (UTC)
 moment.tz.setDefault();

@@ -1,3 +1,4 @@
+const moment = require('moment-timezone');
 
 const currentTime = (message, prefix) => {
     const sysTime = moment().toDate();

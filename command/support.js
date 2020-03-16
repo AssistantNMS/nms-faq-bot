@@ -1,3 +1,4 @@
+const Discord = require("discord.js");
 
 const links = (message) => {
     let support = new Discord.RichEmbed()

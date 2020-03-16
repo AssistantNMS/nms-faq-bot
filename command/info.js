@@ -1,3 +1,4 @@
+const Discord = require("discord.js");
 
 const infoResponse = (message, prefix) => {
     message.reply("I'm an FAQ Bot, made by Vapour38 and Blend3rman to be used on the AssistantforNMS Discord server, which can be found here: https://discord.gg/sVF32Pq"
