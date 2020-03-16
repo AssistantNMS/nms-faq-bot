@@ -1,0 +1,57 @@
+const Discord = require("discord.js");
+
+const directMessage = (bot, message, args, faqChannel) => {
+    // Step 1: Grab the user's message to be forwarded and garnish it with related info
+    var userMessage = args.join(" ");
+    const botMessageEmbed = new Discord.RichEmbed()
+        .setColor('#0099ff')
+        .setTitle('Mod Help Wanted!')
+        .addField('Problem', userMessage)
+        .addField('User in Distress', message.author.username)
+        .setTimestamp()
+        .setFooter('Message ID: ' + message.id);
+    // {
+    //   color: 0x0099ff,
+    //   title: 'Mod help requested!',
+    //   author: {
+    //     name: message.author.username,
+    //     icon_url: message.author.displayAvatarURL(),
+    //   },
+    //   description: userMessage
+    // };
+    var botMessage = "Heads up! @"
+        + message.author.username + message.author.discriminator
+        + " would like some help with this:\n"
+        + "> " + userMessage;
+    console.log(botMessage);
+
+    // Step 2: send it to the faq-bot-dms channel
+    const bot_faq_channel = bot.channels.get(faqChannel);
+    bot_faq_channel.send(botMessageEmbed);
+
+    // Step 3: let the user know their query is received
+    message.reply("I've forwarded your query to the mods! I'll send you an answer as soon as they reply to me :)");
+};
+
+
+const listOfCommandsAsync = async (message) => {
+    let help = new Discord.RichEmbed()
+        .setDescription("**List of Commands**")
+        .setColor("#148AFF")
+        .addField("__**?support**__", "View all of our support details, and the commands associated with them")
+        .addField("__**?supportticket**__", "Find out the template to use when sending an email to our support")
+        .addField("__**?systemreqs**__", "View what specs you need to use the iOS or Andriod app")
+        .addField("__**?links**__", "View a list of all links related to the NMS Assistant")
+        .addField("__**?translation**__", "Help with translating the app!")
+        .addField("__**?faq**__", "Look for solutions to a problem you might have!")
+        .addField("__**?guides**__", "Help create guides for the app!")
+        .addField("__**?freshdesk**__", "Check out our support page!");
+
+    await message.channel.send(help)
+        .then(msg => {
+            message.channel.send("Thank you for using Assistant for NMS!");
+        })
+}
+
+exports.directMessage = directMessage;
+exports.listOfCommandsAsync = listOfCommandsAsync;
