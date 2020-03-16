@@ -102,8 +102,6 @@ bot.on("ready", async () => {
                         +" Or, if you want some info on what I do, type `"+prefix+"info`.");
       }
 
-
-
       // These are server-wide replies, 
       // respond/react to only msgs with the prefix at the start of msg
       if( cmd.startsWith(prefix) ) {
@@ -112,7 +110,7 @@ bot.on("ready", async () => {
         const confuseDrone = bot.emojis.find(emoji => emoji.name === "DroneConfused");
 
         // Make the bot react to every command with the Question emoji, unless it's just the prefix
-        if(args === null) {
+        if(args.length === 0) {
           return;
         }
         
