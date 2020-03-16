@@ -215,17 +215,13 @@ bot.on("ready", async () => {
           // If the message contained the prefix but was not a valid command, 
           // react with the corruptDrone emoji and inform of invalid command
           // Remove previous atlas message reaction
-          if(args === null) return;
-
-          const reactionList = async() => {
-            const reactList = await message.reactions.cache.get(questionDrone.id);
-            return reactList;
-          }
-
-          reactionList.remove()
+          
+          const reactList = await message.reactions.cache.get(questionDrone.id);
+          
+          reactList.remove()
             .catch(error => console.error('Failed to remove reactions: ', error));
            
-          
+          if(args === null) return;
           message.react(confuseDrone)
             .then(console.log)
             .catch(console.error);
