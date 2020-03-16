@@ -215,7 +215,7 @@ bot.on("ready", async () => {
           // If the message contained the prefix but was not a valid command, 
           // react with the corruptDrone emoji and inform of invalid command
           // Remove previous atlas message reaction
-          message.reactions.get(atlasMsg.identifier).remove()
+          message.reactions.get(atlasMsg.id).remove()
             .catch(error => console.error('Failed to remove reactions: ', error));
           
           message.react(atlasMsg)
