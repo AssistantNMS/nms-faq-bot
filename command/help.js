@@ -34,7 +34,7 @@ const directMessage = (bot, message, args, faqChannel) => {
 };
 
 
-const listOfCommandsAsync = async (message) => {
+const listOfCommands = (message) => {
     let help = new Discord.RichEmbed()
         .setDescription("**List of Commands**")
         .setColor("#148AFF")
@@ -47,11 +47,11 @@ const listOfCommandsAsync = async (message) => {
         .addField("__**?guides**__", "Help create guides for the app!")
         .addField("__**?freshdesk**__", "Check out our support page!");
 
-    await message.channel.send(help)
-        .then(msg => {
+    message.channel.send(help)
+        .then(() => {
             message.channel.send("Thank you for using Assistant for NMS!");
         })
 }
 
 exports.directMessage = directMessage;
-exports.listOfCommandsAsync = listOfCommandsAsync;
+exports.listOfCommands = listOfCommands;
