@@ -75,7 +75,7 @@ bot.on("message", async message => {
 
     // Make the bot react to every command with the Question emoji,
     // ignoring empty commands
-    if(args.length === 0) return;
+    if(cmd === prefix) return;
     await message.react(questionDrone);
 
     if (cmd === `${prefix}test`) testCommands.testMessage(message);
