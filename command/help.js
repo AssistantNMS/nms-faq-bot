@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 
-const directMessage = (bot, message, args, faqChannel) => {
+const channels = require('../constant/channels');
+
+const directMessage = (bot, message, args) => {
     // Step 1: Grab the user's message to be forwarded and garnish it with related info
     var userMessage = args.join(" ");
     const botMessageEmbed = new Discord.RichEmbed()
@@ -26,7 +28,7 @@ const directMessage = (bot, message, args, faqChannel) => {
     console.log(botMessage);
 
     // Step 2: send it to the faq-bot-dms channel
-    const bot_faq_channel = bot.channels.get(faqChannel);
+    const bot_faq_channel = bot.channels.get(channels.faq);
     bot_faq_channel.send(botMessageEmbed);
 
     // Step 3: let the user know their query is received
