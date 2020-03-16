@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const moment = require('moment-timezone');
-const bot = new Discord.Client({ disableEveryone: true });
+const bot = new Discord.Client({ disableEveryone: true,
+                                 partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 const ms = require("ms");
 const fs = require("fs");
 
@@ -110,11 +111,13 @@ bot.on("ready", async () => {
         const questionDrone = bot.emojis.find(emoji => emoji.name === "DroneQuestion");
         const confuseDrone = bot.emojis.find(emoji => emoji.name === "DroneConfused");
 
-        // Make the bot react to every command with the Question emoji
-        message.react(questionDrone)
-        .then(console.log)
-        .catch(console.error);
-      
+        // Make the bot react to every command with the Question emoji, unless it's just the prefix
+        if(args != null) {
+          message.react(questionDrone)
+            .then(console.log)
+            .catch(console.error);
+        }
+        
         if (cmd === `${prefix}test`) {
           return message.channel.send("System test concluded. All parameters within operational limits.");
         }
@@ -216,12 +219,12 @@ bot.on("ready", async () => {
           // react with the corruptDrone emoji and inform of invalid command
           // Remove previous atlas message reaction
           
-          const reactList = await message.reactions.cache;
-          const oldReact = reactList.get(questionDrone.id);
-          oldReact.remove()
-            .catch(error => console.error('Failed to remove reactions: ', error));
+          // const reactList = await message.reactions.cache;
+          // const oldReact = reactList.get(questionDrone.id);
+          // oldReact.remove()
+          //   .catch(error => console.error('Failed to remove reactions: ', error));
            
-          if(args === null) return;
+          
           message.react(confuseDrone)
             .then(console.log)
             .catch(console.error);
