@@ -73,7 +73,9 @@ bot.on("message", async message => {
     const questionDrone = bot.emojis.find(emoji => emoji.name === "DroneQuestion");
     const confuseDrone = bot.emojis.find(emoji => emoji.name === "DroneConfused");
 
-    // Make the bot react to every command with the Question emoji
+    // Make the bot react to every command with the Question emoji,
+    // ignoring empty commands
+    if(cmd === prefix) return;
     await message.react(questionDrone);
 
     if (cmd === `${prefix}test`) testCommands.testMessage(message);

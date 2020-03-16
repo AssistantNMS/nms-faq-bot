@@ -42,7 +42,6 @@ const listOfCommands = (message) => {
         .setColor("#148AFF")
         .addField("__**?support**__", "View all of our support details, and the commands associated with them")
         .addField("__**?supportticket**__", "Find out the template to use when sending an email to our support")
-        .addField("__**?systemreqs**__", "View what specs you need to use the iOS or Andriod app")
         .addField("__**?links**__", "View a list of all links related to the NMS Assistant")
         .addField("__**?translation**__", "Help with translating the app!")
         .addField("__**?faq**__", "Look for solutions to a problem you might have!")
