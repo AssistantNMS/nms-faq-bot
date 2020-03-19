@@ -37,7 +37,7 @@ bot.on("ready", async () => {
   //Set Current Version voice channel as app release
   let myGuild = bot.guilds.get('625007826913198080');
   let appReleaseChannel = myGuild.channels.get('662465837558398979');
-  appReleaseChannel.setName(+name);
+  appReleaseChannel.setName(name);
   //Console startup
   console.log(`${bot.user.username} is online. Current Prefix: ${prefix}`);
   // Set bot's status as "Listening to <prefix>help"
