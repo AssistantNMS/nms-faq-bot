@@ -4,16 +4,16 @@ fetch('https://api.nmsassistant.com/version').then(response => response.json());
 
 const infoResponse = (message, prefix) => {
     message.reply("I'm an FAQ Bot, made by Vapour38 and Blend3rman to be used on the AssistantforNMS Discord server, which can be found here: https://discord.gg/sVF32Pq"
-        + "On the server, I have a list of FAQs which can be accessed by typing their command. A list of commands can be found by typing `" + prefix + "help` on the server."
-        + "I also have a list of commands that can be used right here! By using `" + prefix + "info` right here, you can bring this message up."
-        + "By using `" + prefix + "help`, then your message, you can send a message to the mods at the AssistantforNMS asking for help. They will reply to you here."
-        + "By using `" + prefix + "suggest`, then your suggestion, you can suggest an FAQ to the mods, which they will review and possibly add to the bot. A suggestion can range from anything from a question you want answered, to a bug you have found a fix for.");
+        + " On the server, I have a list of FAQs which can be accessed by typing their command. A list of commands can be found by typing `" + prefix + "help` on the server."
+        + " I also have a list of commands that can be used right here! By using `" + prefix + "info` right here, you can bring this message up."
+        + " By using `" + prefix + "modhelp`, then your message, you can send a message to the mods at the AssistantNMS sever asking for help. They will reply to you here."
+        + " By using `" + prefix + "suggest`, then your suggestion, you can suggest an FAQ to the mods, which they will review and possibly add to the bot. A suggestion can range from anything from a question you want answered, to a bug you have found a fix for.");
 
 };
 
 const defaultResponse = (message, prefix) => {
     message.reply("Hi there, would you like help from a human? Or would you like to suggest an FAQ or just get general info on me?"
-        + " Send me your query with `" + prefix + "help <your question>`,"
+        + " Send me your query with `" + prefix + "modhelp <your question>`,"
         + " and I'll find a mod to help you out!"
         + " If you want to suggest an FAQ or suggestion for the server, type `" + prefix + "suggest <your message>`."
         + " Or, if you want some info on what I do, type `" + prefix + "info`.");
