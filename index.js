@@ -8,6 +8,7 @@ const ms = require("ms");
 const fs = require("fs");
 const fetch = require("node-fetch");
 fetch('https://api.nmsassistant.com/version').then(response => response.json());
+const {name} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
 
 const helpCommands = require('./command/help');
 const infoCommands = require('./command/info');
@@ -32,6 +33,9 @@ moment.tz.setDefault();
 bot.login(token);
 
 bot.on("ready", async () => {
+  let myGuild = client.guilds.get('625007826913198080');
+  let appReleaseChannel = myGuild.channels.get('662465837558398979');
+  appReleaseChannel.setName('Current Version: '+name);
   console.log(`${bot.user.username} is online. Current Prefix: ${prefix}`);
   // Set bot's status as "Listening to <prefix>help"
   bot.user.setPresence({ status: 'online' });
@@ -92,7 +96,6 @@ bot.on("message", async message => {
     else if (cmd === `${prefix}guides`) infoCommands.guides(message);
     else if (cmd === `${prefix}freshdesk`) supportCommands.freshdesk(message);
     else if (cmd === `${prefix}appversion`) {
-	     const {name} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
 	     message.channel.send("Current app release: "+name);
          }
     else {
