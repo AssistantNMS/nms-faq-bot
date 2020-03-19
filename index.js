@@ -33,7 +33,7 @@ bot.login(token);
 
 bot.on("ready", async () => {
   //Set the current app release version
-  const appVersion = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
+  const {appVersion} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
   //Set Current Version voice channel as app release
   let myGuild = bot.guilds.get('625007826913198080');
   let appReleaseChannel = myGuild.channels.get('662465837558398979');
