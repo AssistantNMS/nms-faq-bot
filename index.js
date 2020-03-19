@@ -60,60 +60,52 @@ bot.on("message", async message => {
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
-  let hasDevRole = false;
   // This handles all DMs to the bot user
   if (message.channel.type === "dm") {
     console.log("Direct Message");
     // The bot will forward all queries with the <prefix>help command to the faqchannel
-    if (cmd.toLowerCase() === `${prefix}modhelp`) {
-      helpCommands.directMessage(bot, message, args);
-    }
-    else if (cmd.toLowerCase() === `${prefix}info`) { // Nice infobox
-      infoCommands.infoResponse(message, prefix);
-    }
-    else // Handle all non-recognized commands/msgs
-      infoCommands.defaultResponse(message, prefix);
+    if (cmd.toLowerCase() === `${prefix}modhelp`) helpCommands.directMessage(bot, message, args);
+    else if (cmd.toLowerCase() === `${prefix}info`) infoCommands.infoResponse(message, prefix);
+    else infoCommands.defaultResponse(message, prefix); // Handle all non-recognized commands/msgs
+    return;
   }
 
-  // These are server-wide replies,
-  // respond/react to only msgs with the prefix at the start of msg
-  else if (cmd.startsWith(prefix)) {
+  // Don't respond/react to msgs that don't start with the prefix and ignore empty commands
+  if (cmd.startsWith(prefix) == false) return;
+  if (cmd === prefix) return;
 
-    // Make the bot react to every command with the Question emoji,
-    // ignoring empty commands
-    if (cmd === prefix) return;
-    await message.react(questionDrone);
+  // Make the bot react to every command with the Question emoji,  
+  await message.react(questionDrone);
 
-    let authorRoles = await message.member.roles;
-    if (authorRoles.some(role => role.name === 'Developer')) hasDevRole = true;
+  let authorRoles = await message.member.roles;
+  let hasDevRole = authorRoles.some(role => role.name === 'Developer')
 
-    if (hasDevRole === false) {
-      if (cmd === `${prefix}test` || cmd === `${prefix}version`) {
-        emojiHelper.removeEmojiAsync(message, questionDrone.id);
-        await message.react(droneEyeRed);
-        return message.channel.send(responses.unauthorised);
-      }
+  if (hasDevRole === false) {
+    if (cmd === `${prefix}test` || cmd === `${prefix}version`) { //Restricted to developer only
+      await emojiHelper.removeEmojiAsync(message, questionDrone.id);
+      await message.react(droneEyeRed);
+      return message.channel.send(responses.unauthorised);
     }
+  }
 
-    if (cmd === `${prefix}test`) testCommands.testMessage(message);
-    else if (cmd === `${prefix}version`) versionCommands.getCurrent(message);
-    else if (cmd === `${prefix}links`) infoCommands.links(message);
-    else if (cmd === `${prefix}support`) supportCommands.links(message);
-    else if (cmd === `${prefix}faq`) infoCommands.faq(message);
-    else if (cmd === `${prefix}time`) timeCommands.currentTime(message, prefix);
-    else if (cmd === `${prefix}supportticket`) supportCommands.ticket(message);
-    else if (cmd === `${prefix}help`) helpCommands.listOfCommands(message);
-    else if (cmd === `${prefix}translation`) infoCommands.translation(message);
-    else if (cmd === `${prefix}guides`) infoCommands.guides(message);
-    else if (cmd === `${prefix}freshdesk`) supportCommands.freshdesk(message);
-    else if (cmd === `${prefix}appversion`) infoCommands.appVersion(message);
-    else {
-      // If the message contained the prefix but was not a valid command,
-      // react with the corruptDrone emoji and inform of invalid command
-      // Remove previous atlas message reaction
-      emojiHelper.removeEmojiAsync(message, questionDrone.id);
-      await message.react(confuseDrone);
-      return message.channel.send(responses.unrecognised);
-    }
+  if (cmd === `${prefix}test`) testCommands.testMessage(message);
+  else if (cmd === `${prefix}version`) versionCommands.getCurrent(message);
+  else if (cmd === `${prefix}links`) infoCommands.links(message);
+  else if (cmd === `${prefix}support`) supportCommands.links(message);
+  else if (cmd === `${prefix}faq`) infoCommands.faq(message);
+  else if (cmd === `${prefix}time`) timeCommands.currentTime(message, prefix);
+  else if (cmd === `${prefix}supportticket`) supportCommands.ticket(message);
+  else if (cmd === `${prefix}help`) helpCommands.listOfCommands(message);
+  else if (cmd === `${prefix}translation`) infoCommands.translation(message);
+  else if (cmd === `${prefix}guides`) infoCommands.guides(message);
+  else if (cmd === `${prefix}freshdesk`) supportCommands.freshdesk(message);
+  else if (cmd === `${prefix}appversion`) infoCommands.appVersion(message);
+  else {
+    // If the message contained the prefix but was not a valid command,
+    // react with the corruptDrone emoji and inform of invalid command
+    // Remove previous atlas message reaction
+    await emojiHelper.removeEmojiAsync(message, questionDrone.id);
+    await message.react(confuseDrone);
+    return message.channel.send(responses.unrecognised);
   }
 });
