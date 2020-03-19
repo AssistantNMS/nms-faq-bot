@@ -35,8 +35,6 @@ bot.on("ready", async () => {
   // Set bot's status as "Listening to <prefix>help"
   bot.user.setPresence({ status: 'online' });
   bot.user.setActivity(`${prefix}help`, { type: 'LISTENING' });
-
-
 });
 
 bot.on("message", async message => {
