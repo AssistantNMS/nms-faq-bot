@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+fetch('https://api.nmsassistant.com/version').then(response => response.json());
 
 const infoResponse = (message, prefix) => {
     message.reply("I'm an FAQ Bot, made by Vapour38 and Blend3rman to be used on the AssistantforNMS Discord server, which can be found here: https://discord.gg/sVF32Pq"
@@ -40,7 +41,7 @@ const support = (message) => {
         });
 };
 
-const appVersion = (message) => {
+const appVersion = (message) async () => {
   const {name} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
 	message.channel.send("Current app release: "+name);
 };
