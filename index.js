@@ -7,7 +7,6 @@ const bot = new Discord.Client({
 const ms = require("ms");
 const fs = require("fs");
 const fetch = require("node-fetch");
-fetch('https://api.nmsassistant.com/version').then(response => response.json());
 
 const helpCommands = require('./command/help');
 const infoCommands = require('./command/info');
@@ -16,6 +15,10 @@ const versionCommands = require('./command/version');
 const testCommands = require('./command/test');
 const timeCommands = require('./command/time');
 
+const responses = require('./constant/responses');
+
+const emojiHelper = require('./helper/emoji');
+
 // Fetch config information from Heroku config vars
 const token = process.env.BOT_TOKEN;
 const prefix = process.env.BOT_PREFIX;
@@ -23,28 +26,17 @@ const prefix = process.env.BOT_PREFIX;
 // Set the bot's timezone to the server's timezone (UTC)
 moment.tz.setDefault();
 
-/* TODO: Separate the bot's replies into json files for easy editing
- *  const botResponses = ('./botResponses.json')
- *  const faqTopics = ('./faqTopics.json')
- *  ... and so on
- */
-
 bot.login(token);
 
 bot.on("ready", async () => {
-  //Set the current app release version
-  const {name} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
-  //Set Current Version voice channel as app release
-  let myGuild = bot.guilds.get('625007826913198080');
-  let appReleaseChannel = myGuild.channels.get('662465837558398979');
-  appReleaseChannel.setName(name);
+  setVoiceChannelTextToCurrentVersion();
   //Console startup
   console.log(`${bot.user.username} is online. Current Prefix: ${prefix}`);
   // Set bot's status as "Listening to <prefix>help"
   bot.user.setPresence({ status: 'online' });
   bot.user.setActivity(`${prefix}help`, { type: 'LISTENING' });
 
-  
+
 });
 
 bot.on("message", async message => {
@@ -56,10 +48,10 @@ bot.on("message", async message => {
   const confuseDrone = bot.emojis.find(emoji => emoji.name === "DroneConfused");
   const droneEyeBlue = bot.emojis.find(emoji => emoji.name === "DroneEyeBlue");
   const droneEyeRed = bot.emojis.find(emoji => emoji.name === "DroneEyeRed");
-  
+
   // Make the bot react to all mentions of it
   if (message.isMentioned(bot.user)) {
-    
+
     message.react(droneEyeBlue)
       .then(console.log)
       .catch(console.error);
@@ -69,7 +61,7 @@ bot.on("message", async message => {
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
-  let hasDevRole = 0;
+  let hasDevRole = false;
   // This handles all DMs to the bot user
   if (message.channel.type === "dm") {
     console.log("Direct Message");
@@ -90,44 +82,22 @@ bot.on("message", async message => {
 
     // Make the bot react to every command with the Question emoji,
     // ignoring empty commands
-    if(cmd === prefix) return;
+    if (cmd === prefix) return;
     await message.react(questionDrone);
 
     let authorRoles = await message.member.roles;
-    if(authorRoles.some(role => role.name === 'Developer')) hasDevRole = 1;
-      
-    
-    if (cmd === `${prefix}test`){
-      if(hasDevRole) testCommands.testMessage(message);
-      else {
+    if (authorRoles.some(role => role.name === 'Developer')) hasDevRole = true;
 
-        let reactions = await message.reactions;
-
-        for (const reaction of reactions) {
-        if (!reaction[0].includes(questionDrone.id)) continue;
-        reaction[1].remove();
-        }
-
+    if (hasDevRole === false) {
+      if (cmd === `${prefix}test` || cmd === `${prefix}version`) {
+        emojiHelper.removeEmojiAsync(message, questionDrone.id);
         await message.react(droneEyeRed);
-        return message.channel.send('ERROR: Unauthorized user. Dispatching Sentinel drones.');
+        return message.channel.send(responses.unauthorised);
       }
     }
-    
-    else if (cmd === `${prefix}version`){
-      if(hasDevRole) versionCommands.getCurrent(message);
-      else {
 
-        let reactions = await message.reactions;
-
-        for (const reaction of reactions) {
-        if (!reaction[0].includes(questionDrone.id)) continue;
-        reaction[1].remove();
-        }
-
-        await message.react(droneEyeRed);
-        return message.channel.send('ERROR: Unauthorized user. Dispatching Sentinel drones.');
-      }
-    } 
+    if (cmd === `${prefix}test`) testCommands.testMessage(message);
+    else if (cmd === `${prefix}version`) versionCommands.getCurrent(message);
     else if (cmd === `${prefix}links`) infoCommands.links(message);
     else if (cmd === `${prefix}support`) supportCommands.links(message);
     else if (cmd === `${prefix}faq`) infoCommands.faq(message);
@@ -142,16 +112,23 @@ bot.on("message", async message => {
       // If the message contained the prefix but was not a valid command,
       // react with the corruptDrone emoji and inform of invalid command
       // Remove previous atlas message reaction
-
-      let reactions = await message.reactions;
-      for (const reaction of reactions) {
-        if (!reaction[0].includes(questionDrone.id)) continue;
-        reaction[1].remove();
-      }
+      emojiHelper.removeEmojiAsync(message, questionDrone.id);
       await message.react(confuseDrone);
-
-
-      return message.channel.send("ERROR: Unrecognized command. Unable to assist.");
+      return message.channel.send(responses.unrecognised);
     }
   }
 });
+
+
+const setVoiceChannelTextToCurrentVersion = () => {
+  //Set the current app release version
+  fetch('https://api.nmsassistant.com/version').then(response => {
+    const responsObj = response.json();
+    //Set Current Version voice channel as app release
+    let myGuild = bot.guilds.get('625007826913198080');
+    let appReleaseChannel = myGuild.channels.get('662465837558398979');
+    appReleaseChannel.setName(responsObj.name);
+  }).catch(exception => {
+    console.log('Could not set voice channel text', exception);
+  });
+}
