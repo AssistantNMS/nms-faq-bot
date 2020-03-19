@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const fetch = require("node-fetch");
-fetch('https://api.nmsassistant.com/version').then(response => response.json());
 
 const infoResponse = (message, prefix) => {
     message.reply("I'm an FAQ Bot, made by Vapour38 and Blend3rman to be used on the AssistantforNMS Discord server, which can be found here: https://discord.gg/sVF32Pq"
@@ -42,10 +41,12 @@ const support = (message) => {
         });
 };
 
-const appVersion = async (message) => {
-  const {name} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
-  message.channel.send("Current AssistantNMS app release: "+name);
-};
+const appVersion = (message) => fetch('https://api.nmsassistant.com/version').then(response => {
+    const responsObj = response.json();
+    message.channel.send("Current AssistantNMS app release: " + responsObj.name);
+}).catch(exception => {
+    console.log('Could not get App version from API', exception);
+});
 
 const faq = (message) => message.channel.send("If you can’t find the answers you’re looking for here, try checking out our full FAQ on Freshdesk: https://nmsassistant.freshdesk.com/");
 const translation = (message) => message.channel.send("If you are fluent in a language that isn't already implimented into the app, go to https://nmsassistant.com/tools/translate, or talk to @KhaozTopsy#7865 directly");
