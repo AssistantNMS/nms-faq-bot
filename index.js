@@ -74,7 +74,7 @@ bot.on("message", async message => {
   if (message.channel.type === "dm") {
     console.log("Direct Message");
     // The bot will forward all queries with the <prefix>help command to the faqchannel
-    if (cmd.toLowerCase() === `${prefix}help`) {
+    if (cmd.toLowerCase() === `${prefix}modhelp`) {
       helpCommands.directMessage(bot, message, args);
     }
     else if (cmd.toLowerCase() === `${prefix}info`) { // Nice infobox
