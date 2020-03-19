@@ -6,7 +6,8 @@ const bot = new Discord.Client({
 });
 const ms = require("ms");
 const fs = require("fs");
-const nodefetch = require("node-fetch");
+const fetch = require("node-fetch");
+fetch('https://api.nmsassistant.com/version').then(response => response.json());
 
 const helpCommands = require('./command/help');
 const infoCommands = require('./command/info');
@@ -67,7 +68,7 @@ bot.on("message", async message => {
       infoCommands.defaultResponse(message, prefix);
   }
 
-  // These are server-wide replies, 
+  // These are server-wide replies,
   // respond/react to only msgs with the prefix at the start of msg
   if (cmd.startsWith(prefix)) {
     // Get the bot-specific emojis by name
@@ -90,8 +91,12 @@ bot.on("message", async message => {
     else if (cmd === `${prefix}translation`) infoCommands.translation(message);
     else if (cmd === `${prefix}guides`) infoCommands.guides(message);
     else if (cmd === `${prefix}freshdesk`) supportCommands.freshdesk(message);
+    else if (cmd === 'appversion') {
+	             const { file } = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
+	             message.channel.send(file);
+              }
     else {
-      // If the message contained the prefix but was not a valid command, 
+      // If the message contained the prefix but was not a valid command,
       // react with the corruptDrone emoji and inform of invalid command
       // Remove previous atlas message reaction
 
