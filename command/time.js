@@ -31,12 +31,12 @@ const timeFnsInfo = (bot, message, prefix) => {
         .addField('Getting Server (UTC) Time', 'To view the UTC time of the server: '
                     +`\`${prefix}time\``)
         .addField('Setting Your Timezone', 'You may set your timezone in the following ways:\n'
-                    +'\t1. By Country\/Area Name: '
+                    +'\t**1. By Country\/Area Name:** '
                     +`\`${prefix}time set {Country}\/{Area}\`\n`
-                    +'Example: '+`\`${prefix}time set America\/New_York\`\n\n`
-                    +'2. By UTC Offset (recommended): '
+                    +'*Example*: '+`\`${prefix}time set America\/New_York\`\n\n`
+                    +'**2. By UTC Offset (recommended):** '
                     +`\`${prefix}time set UTC{+\/-}{Offset in HHMM}\`\n`
-                    +'Example: '+`\`${prefix}time set UTC+2230\`\n`
+                    +'*Example*: '+`\`${prefix}time set UTC+2230\`\n`
                     +'To find your offset visit [this page](https://www.timeanddate.com/time/map/) '
                     +'and click on your region in the map.');
     message.channel.send(helpEmbed);
