@@ -98,10 +98,7 @@ bot.on("message", async message => {
     else if (cmd === `${prefix}translation`) infoCommands.translation(message);
     else if (cmd === `${prefix}guides`) infoCommands.guides(message);
     else if (cmd === `${prefix}freshdesk`) supportCommands.freshdesk(message);
-    else if (cmd === `${prefix}appversion`) {
-              const {name} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
-	            message.channel.send("Current app release: "+name);
-         }
+    else if (cmd === `${prefix}appversion`) infoCommands.appVersion(message);
     else {
       // If the message contained the prefix but was not a valid command,
       // react with the corruptDrone emoji and inform of invalid command

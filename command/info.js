@@ -40,6 +40,11 @@ const support = (message) => {
         });
 };
 
+const appVersion = (message) => {
+  const {name} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
+	message.channel.send("Current app release: "+name);
+};
+
 const faq = (message) => message.channel.send("If you can’t find the answers you’re looking for here, try checking out our full FAQ on Freshdesk: https://nmsassistant.freshdesk.com/");
 const translation = (message) => message.channel.send("If you are fluent in a language that isn't already implimented into the app, go to https://nmsassistant.com/tools/translate, or talk to @KhaozTopsy#7865 directly");
 const guides = (message) => message.channel.send("If you would like to contribute your knowledge of NMS towards the app, head to https://nmsassistant.com/tools/guide and create a guide for us! If approved, this will then be featured in the guides section of the app");
@@ -52,3 +57,4 @@ exports.support = support;
 exports.faq = faq;
 exports.translation = translation;
 exports.guides = guides;
+exports.appVersion = appVersion;
