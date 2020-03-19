@@ -16,7 +16,7 @@ function parseMentions(bot,mention) {
             if (mention.startsWith('!')) {
                 mention = mention.slice(1);
             }
-            let mentionResolved = await bot.users.cache.get(mention);
+            let mentionResolved = bot.users.cache.get(mention);
             return mentionResolved;
         }
 }
