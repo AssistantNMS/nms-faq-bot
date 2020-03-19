@@ -23,6 +23,9 @@ const prefix = process.env.BOT_PREFIX;
 // Set the bot's timezone to the server's timezone (UTC)
 moment.tz.setDefault();
 
+//Set the current app release version
+const appVersion = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
+
 /* TODO: Separate the bot's replies into json files for easy editing
  *  const botResponses = ('./botResponses.json')
  *  const faqTopics = ('./faqTopics.json')
@@ -34,7 +37,7 @@ bot.login(token);
 bot.on("ready", async () => {
   let myGuild = bot.guilds.get('625007826913198080');
   let appReleaseChannel = myGuild.channels.get('662465837558398979');
-  appReleaseChannel.setName('Current Version: '+name);
+  appReleaseChannel.setName('Current Version: '+appVersion);
   console.log(`${bot.user.username} is online. Current Prefix: ${prefix}`);
   // Set bot's status as "Listening to <prefix>help"
   bot.user.setPresence({ status: 'online' });
