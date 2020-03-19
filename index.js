@@ -92,7 +92,7 @@ bot.on("message", async message => {
     else if (cmd === `${prefix}guides`) infoCommands.guides(message);
     else if (cmd === `${prefix}freshdesk`) supportCommands.freshdesk(message);
     else if (cmd === `${prefix}appversion`) {
-	             const { file } = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
+	             const {file} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
 	             message.channel.send("Current app release:"+file);
               }
     else {
