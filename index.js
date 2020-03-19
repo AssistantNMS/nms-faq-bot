@@ -6,6 +6,7 @@ const bot = new Discord.Client({
 });
 const ms = require("ms");
 const fs = require("fs");
+const nodefetch = require("node-fetch");
 
 const helpCommands = require('./command/help');
 const infoCommands = require('./command/info');
@@ -89,7 +90,6 @@ bot.on("message", async message => {
     else if (cmd === `${prefix}translation`) infoCommands.translation(message);
     else if (cmd === `${prefix}guides`) infoCommands.guides(message);
     else if (cmd === `${prefix}freshdesk`) supportCommands.freshdesk(message);
-
     else {
       // If the message contained the prefix but was not a valid command, 
       // react with the corruptDrone emoji and inform of invalid command
