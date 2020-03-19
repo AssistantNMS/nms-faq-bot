@@ -43,15 +43,24 @@ bot.on("ready", async () => {
   // Set bot's status as "Listening to <prefix>help"
   bot.user.setPresence({ status: 'online' });
   bot.user.setActivity(`${prefix}help`, { type: 'LISTENING' });
+
+  
 });
 
 bot.on("message", async message => {
+  // Ignore messages by the bot itself
   if (message.author.bot) return;
 
+  // Get the bot-specific emojis by name
+  const questionDrone = bot.emojis.find(emoji => emoji.name === "DroneQuestion");
+  const confuseDrone = bot.emojis.find(emoji => emoji.name === "DroneConfused");
+  const droneEyeBlue = bot.emojis.find(emoji => emoji.name === "DroneEyeBlue");
+  const droneEyeRed = bot.emojis.find(emoji => emoji.name === "DroneEyeRed");
+  
   // Make the bot react to all mentions of it
   if (message.isMentioned(bot.user)) {
-    const droneEye = bot.emojis.find(emoji => emoji.name === "DroneEyeBlue");
-    message.react(droneEye)
+    
+    message.react(droneEyeBlue)
       .then(console.log)
       .catch(console.error);
   }
@@ -60,7 +69,7 @@ bot.on("message", async message => {
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
-
+  let hasDevRole = 0;
   // This handles all DMs to the bot user
   if (message.channel.type === "dm") {
     console.log("Direct Message");
@@ -78,17 +87,46 @@ bot.on("message", async message => {
   // These are server-wide replies,
   // respond/react to only msgs with the prefix at the start of msg
   else if (cmd.startsWith(prefix)) {
-    // Get the bot-specific emojis by name
-    const questionDrone = bot.emojis.find(emoji => emoji.name === "DroneQuestion");
-    const confuseDrone = bot.emojis.find(emoji => emoji.name === "DroneConfused");
 
     // Make the bot react to every command with the Question emoji,
     // ignoring empty commands
     if(cmd === prefix) return;
     await message.react(questionDrone);
 
-    if (cmd === `${prefix}test`) testCommands.testMessage(message);
-    else if (cmd === `${prefix}version`) versionCommands.getCurrent(message);
+    if(message.author.roles.cache.some(role => role.name === 'Developer')) hasDevRole = 1;
+      
+    
+    if (cmd === `${prefix}test`){
+      if(hasDevRole) testCommands.testMessage(message);
+      else {
+
+        let reactions = await message.reactions;
+
+        for (const reaction of reactions) {
+        if (!reaction[0].includes(questionDrone.id)) continue;
+        reaction[1].remove();
+        }
+
+        await message.react(droneEyeRed);
+        return message.channel.send('ERROR: Unauthorized user. Dispatching Sentinel drones.');
+      }
+    }
+    
+    else if (cmd === `${prefix}version`){
+      if(hasDevRole) versionCommands.getCurrent(message);
+      else {
+
+        let reactions = await message.reactions;
+
+        for (const reaction of reactions) {
+        if (!reaction[0].includes(questionDrone.id)) continue;
+        reaction[1].remove();
+        }
+
+        await message.react(droneEyeRed);
+        return message.channel.send('ERROR: Unauthorized user. Dispatching Sentinel drones.');
+      }
+    } 
     else if (cmd === `${prefix}links`) infoCommands.links(message);
     else if (cmd === `${prefix}support`) supportCommands.links(message);
     else if (cmd === `${prefix}faq`) infoCommands.faq(message);

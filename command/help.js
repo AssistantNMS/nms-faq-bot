@@ -49,9 +49,9 @@ const listOfCommands = (message) => {
         .addField("__**?freshdesk**__", "Check out our support page!");
 
     message.channel.send(help)
-        .then(() => {
-            message.channel.send("Thank you for using Assistant for NMS!");
-        })
+        // .then(() => {
+        //     message.channel.send("Thank you for using Assistant for NMS!");
+        // })
 }
 
 exports.directMessage = directMessage;

@@ -44,7 +44,7 @@ const support = (message) => {
 
 const appVersion = async (message) => {
   const {name} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
-  message.channel.send("Current app release: "+name);
+  message.channel.send("Current AssistantNMS app release: "+name);
 };
 
 const faq = (message) => message.channel.send("If you can’t find the answers you’re looking for here, try checking out our full FAQ on Freshdesk: https://nmsassistant.freshdesk.com/");
