@@ -77,7 +77,7 @@ bot.on("message", async message => {
 
   // These are server-wide replies,
   // respond/react to only msgs with the prefix at the start of msg
-  if (cmd.startsWith(prefix)) {
+  else if (cmd.startsWith(prefix)) {
     // Get the bot-specific emojis by name
     const questionDrone = bot.emojis.find(emoji => emoji.name === "DroneQuestion");
     const confuseDrone = bot.emojis.find(emoji => emoji.name === "DroneConfused");
