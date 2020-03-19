@@ -6,7 +6,6 @@ const bot = new Discord.Client({
 });
 const ms = require("ms");
 const fs = require("fs");
-const fetch = require("node-fetch");
 
 const helpCommands = require('./command/help');
 const infoCommands = require('./command/info');
@@ -18,6 +17,7 @@ const timeCommands = require('./command/time');
 const responses = require('./constant/responses');
 
 const emojiHelper = require('./helper/emoji');
+const channelHelper = require('./helper/channels');
 
 // Fetch config information from Heroku config vars
 const token = process.env.BOT_TOKEN;
@@ -29,7 +29,7 @@ moment.tz.setDefault();
 bot.login(token);
 
 bot.on("ready", async () => {
-  setVoiceChannelTextToCurrentVersion();
+  channelHelper.setVoiceChannelTextToCurrentAppReleaseName();
   //Console startup
   console.log(`${bot.user.username} is online. Current Prefix: ${prefix}`);
   // Set bot's status as "Listening to <prefix>help"
@@ -51,7 +51,6 @@ bot.on("message", async message => {
 
   // Make the bot react to all mentions of it
   if (message.isMentioned(bot.user)) {
-
     message.react(droneEyeBlue)
       .then(console.log)
       .catch(console.error);
@@ -118,17 +117,3 @@ bot.on("message", async message => {
     }
   }
 });
-
-
-const setVoiceChannelTextToCurrentVersion = () => {
-  //Set the current app release version
-  fetch('https://api.nmsassistant.com/version').then(response => {
-    const responsObj = response.json();
-    //Set Current Version voice channel as app release
-    let myGuild = bot.guilds.get('625007826913198080');
-    let appReleaseChannel = myGuild.channels.get('662465837558398979');
-    appReleaseChannel.setName(responsObj.name);
-  }).catch(exception => {
-    console.log('Could not set voice channel text', exception);
-  });
-}
