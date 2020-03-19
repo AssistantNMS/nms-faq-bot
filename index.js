@@ -8,7 +8,6 @@ const ms = require("ms");
 const fs = require("fs");
 const fetch = require("node-fetch");
 fetch('https://api.nmsassistant.com/version').then(response => response.json());
-const {name} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
 
 const helpCommands = require('./command/help');
 const infoCommands = require('./command/info');
@@ -96,7 +95,8 @@ bot.on("message", async message => {
     else if (cmd === `${prefix}guides`) infoCommands.guides(message);
     else if (cmd === `${prefix}freshdesk`) supportCommands.freshdesk(message);
     else if (cmd === `${prefix}appversion`) {
-	     message.channel.send("Current app release: "+name);
+              const {name} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
+	            message.channel.send("Current app release: "+name);
          }
     else {
       // If the message contained the prefix but was not a valid command,
