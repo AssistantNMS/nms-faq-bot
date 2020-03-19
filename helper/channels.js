@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
 
-const setVoiceChannelTextToCurrentAppReleaseName = () => {
+const setVoiceChannelTextToCurrentAppReleaseName = (bot) => {
     //Set the current app release version
     fetch('https://api.nmsassistant.com/version').then(response => {
         const responsObj = response.json();
