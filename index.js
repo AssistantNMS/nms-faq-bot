@@ -33,11 +33,11 @@ bot.login(token);
 
 bot.on("ready", async () => {
   //Set the current app release version
-  const {appVersion} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
+  const {name} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
   //Set Current Version voice channel as app release
   let myGuild = bot.guilds.get('625007826913198080');
   let appReleaseChannel = myGuild.channels.get('662465837558398979');
-  appReleaseChannel.setName('Current Version: '+appVersion);
+  appReleaseChannel.setName("Current Version: "+name);
   //Console startup
   console.log(`${bot.user.username} is online. Current Prefix: ${prefix}`);
   // Set bot's status as "Listening to <prefix>help"
@@ -99,7 +99,6 @@ bot.on("message", async message => {
     else if (cmd === `${prefix}guides`) infoCommands.guides(message);
     else if (cmd === `${prefix}freshdesk`) supportCommands.freshdesk(message);
     else if (cmd === `${prefix}appversion`) {
-              const {name} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
 	            message.channel.send("Current app release: "+name);
          }
     else {
