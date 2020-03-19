@@ -93,7 +93,10 @@ bot.on("message", async message => {
   else if (cmd === `${prefix}links`) infoCommands.links(message);
   else if (cmd === `${prefix}support`) supportCommands.links(message);
   else if (cmd === `${prefix}faq`) infoCommands.faq(message);
-  else if (cmd === `${prefix}time`) timeCommands.currentTime(message, prefix);
+  else if (cmd === `${prefix}time`) {
+    if (message.content === cmd)  timeCommands.currentTime(message, prefix);
+    else if (args.includes('help')) timeCommands.timeFnsInfo(message, prefix);
+  }
   else if (cmd === `${prefix}supportticket`) supportCommands.ticket(message);
   else if (cmd === `${prefix}help`) helpCommands.listOfCommands(message);
   else if (cmd === `${prefix}translation`) infoCommands.translation(message);
