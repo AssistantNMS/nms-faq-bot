@@ -22,7 +22,7 @@ function parseMentions(bot,mention) {
 }
 
 // A user guide to the bot
-const timeFnsInfo = (message, prefix) => {
+const timeFnsInfo = (bot, message, prefix) => {
 
     let helpEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')

@@ -95,7 +95,7 @@ bot.on("message", async message => {
   else if (cmd === `${prefix}faq`) infoCommands.faq(message);
   else if (cmd === `${prefix}time`) {
     if (message.content === cmd)  timeCommands.currentTime(message, prefix);
-    else if (args.includes('help')) timeCommands.timeFnsInfo(message, prefix);
+    else if (args.includes('help')) timeCommands.timeFnsInfo(bot, message, prefix);
   }
   else if (cmd === `${prefix}supportticket`) supportCommands.ticket(message);
   else if (cmd === `${prefix}help`) helpCommands.listOfCommands(message);
