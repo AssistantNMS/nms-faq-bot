@@ -25,19 +25,20 @@ function parseMentions(bot,mention) {
 const timeFnsInfo = (bot, message, prefix) => {
 
     let helpEmbed = new Discord.RichEmbed()
-        .setColor('#0099ff')
+        //.setColor('#0099ff')
         .setTitle('Timezone Functionality')
-        .setDescription('Here\'s a list of commands and instructions to use the timezone features:')
-        .addField('Getting Server (UTC) Time', 'To view the UTC time of the server:\n'
+        .setDescription('This is a list of commands and instructions to use the timezone features.')
+        .addField('Getting Server (UTC) Time', 'To view the UTC time of the server: '
                     +`\`${prefix}time\``)
         .addField('Setting Your Timezone', 'You may set your timezone in the following ways:\n'
-                    +'1. By Country\/Area Name\n'
+                    +'\t1. By Country\/Area Name: '
                     +`\`${prefix}time set {Country}\/{Area}\`\n`
-                    +'Example: '+`\`${prefix}time set America\/New_York\`\n`
-                    +'2. By UTC Offset (recommended)\n'
+                    +'Example: '+`\`${prefix}time set America\/New_York\`\n\n`
+                    +'2. By UTC Offset (recommended): '
                     +`\`${prefix}time set UTC{+\/-}{Offset in HHMM}\`\n`
                     +'Example: '+`\`${prefix}time set UTC+2230\`\n`
-                    +'To find your offset visit https://www.timeanddate.com/time/map/');
+                    +'To find your offset visit [this page](https://www.timeanddate.com/time/map/) '
+                    +'and click on your region in the map.');
     message.channel.send(helpEmbed);
 };
 
