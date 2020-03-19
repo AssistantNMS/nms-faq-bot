@@ -41,11 +41,9 @@ const support = (message) => {
         });
 };
 
-async function asyncCall() {
-  const appVersion = (message) => {
-    const {name} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
-  	message.channel.send("Current app release: "+name);
-  }
+const appVersion = async (message) => {
+  const {name} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
+  message.channel.send("Current app release: "+name);
 };
 
 
