@@ -1,5 +1,5 @@
 const moment = require('moment-timezone');
-const channels = require('./constant/channels');
+const channels = require('../constant/channels');
 const {gAPI} = require('googleapis');
 const readline = require('readline');
 const Discord = require('discord.js');
