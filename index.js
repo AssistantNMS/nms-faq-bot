@@ -32,7 +32,7 @@ moment.tz.setDefault();
 bot.login(token);
 
 bot.on("ready", async () => {
-  let myGuild = client.guilds.get('625007826913198080');
+  let myGuild = bot.guilds.get('625007826913198080');
   let appReleaseChannel = myGuild.channels.get('662465837558398979');
   appReleaseChannel.setName('Current Version: '+name);
   console.log(`${bot.user.username} is online. Current Prefix: ${prefix}`);
