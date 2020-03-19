@@ -24,7 +24,7 @@ function parseMentions(bot,mention) {
 // A user guide to the bot
 const timeFnsInfo = (message, prefix) => {
 
-    let helpEmbed = new Discord.RichEmbed
+    let helpEmbed = new Discord.MessageEmbed
         .setColor('#0099ff')
         .setTitle('Timezone Functionality')
         .setDescription('Here\'s a list of commands and instructions to use the timezone features:')
