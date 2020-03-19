@@ -93,7 +93,7 @@ bot.on("message", async message => {
     else if (cmd === `${prefix}freshdesk`) supportCommands.freshdesk(message);
     else if (cmd === `${prefix}appversion`) {
 	     const {name} = await fetch('https://api.nmsassistant.com/version').then(response => response.json());
-	     message.channel.send("Current app release:"+name);
+	     message.channel.send("Current app release: "+name);
          }
     else {
       // If the message contained the prefix but was not a valid command,
