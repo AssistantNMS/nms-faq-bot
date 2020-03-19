@@ -92,8 +92,9 @@ bot.on("message", async message => {
     // ignoring empty commands
     if(cmd === prefix) return;
     await message.react(questionDrone);
-
-    if(message.author.roles.cache.some(role => role.name === 'Developer')) hasDevRole = 1;
+    
+    let authorRoles = await message.author.roles;
+    if(authorRoles.some(role => role.name === 'Developer')) hasDevRole = 1;
       
     
     if (cmd === `${prefix}test`){
