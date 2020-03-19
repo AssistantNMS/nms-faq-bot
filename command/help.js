@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 
 const channels = require('../constant/channels');
+const responses = require('../constant/responses');
 
 const directMessage = (bot, message, args) => {
     // Step 1: Grab the user's message to be forwarded and garnish it with related info
@@ -32,7 +33,7 @@ const directMessage = (bot, message, args) => {
     bot_faq_channel.send(botMessageEmbed);
 
     // Step 3: let the user know their query is received
-    message.reply("I've forwarded your query to the mods! I'll send you an answer as soon as they reply to me :)");
+    message.reply(responses.directMessageHelp);
 };
 
 
@@ -49,9 +50,9 @@ const listOfCommands = (message) => {
         .addField("__**?freshdesk**__", "Check out our support page!");
 
     message.channel.send(help)
-        // .then(() => {
-        //     message.channel.send("Thank you for using Assistant for NMS!");
-        // })
+    // .then(() => {
+    //     message.channel.send("Thank you for using Assistant for NMS!");
+    // })
 }
 
 exports.directMessage = directMessage;
