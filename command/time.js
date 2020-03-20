@@ -47,6 +47,7 @@ const timeFnsInfo = (bot, message, prefix) => {
 const setUserTZone = (bot, message,prefix, args) => {
     // If UTC offset is mentioned:
     if( args.toUpperCase().includes('UTC') ){
+        console.log('Args recieved: '+args);
         var utcRegExp = /[+-]\d{4}/;
         var userOffset = args.match(utcRegExp);
         if (userOffset === null) 
