@@ -54,7 +54,7 @@ const setUserTZone = (message, prefix, args) => {
                     +"Type the offset in this format: "
                     +`\`${prefix}time set UTC{+\/-}{Offset in HHMM}\``);
         console.log('User offset: '+userOffset);
-        let userTime = moment().utcOffset(userOffset);
+        let userTime = moment.utc().utcOffset(userOffset);
         console.log('User Time: '+userTime.format());
         message.channel.send("Your local time is "+ userTime.format('ddd hh[:]mm A [(UTC]Z[)]'));
     
