@@ -43,16 +43,16 @@ const timeFnsInfo = (bot, message, prefix) => {
 };
 
 // Function that saves a user's timezone preference
-const setUserTZone = (bot, message, prefix, args) => {
+const setUserTZone = (message, prefix, args) => {
     // If UTC offset is mentioned:
     if( args[0].toLowerCase().includes('utc') ){
         console.log('Args recieved: '+args);
         var utcRegExp = /[+-]\d{4}/;
         var userOffset = args[0].match(utcRegExp);
         if (userOffset === null) 
-            return message.reply("Sorry, that's not a valid offset."
-                    +" Type the offset in this format:\n"
-                    +`\`${prefix}time set UTC{+\/-}{Offset in HHMM}\`\n`);
+            return message.reply("Sorry, that's not a valid offset.\n"
+                    +"Type the offset in this format: "
+                    +`\`${prefix}time set UTC{+\/-}{Offset in HHMM}\``);
         
         let userTime = moment().utcOffset(userOffset);
         message.channel.send("Your local time is "+ userTime.format('ddd hhmm A [(UTC]Z[)]'));
