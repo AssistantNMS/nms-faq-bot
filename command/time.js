@@ -56,7 +56,7 @@ const setUserTZone = (bot, message,prefix, args) => {
                     +`\`${prefix}time set UTC{+\/-}{Offset in HHMM}\`\n`);
         
         let userTime = moment().utcOffset(userOffset);
-        message.channel.send("Your local time is"+ userTime.format('ddd hhmm A [(UTC]Z[)]'));
+        message.channel.send("Your local time is "+ userTime.format('ddd hhmm A [(UTC]Z[)]'));
     
     }
 
