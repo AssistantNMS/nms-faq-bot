@@ -45,7 +45,7 @@ const timeFnsInfo = (bot, message, prefix) => {
 // Function that saves a user's timezone preference
 const setUserTZone = (bot, message, prefix, args) => {
     // If UTC offset is mentioned:
-    if( args[0].toLower().includes('utc') ){
+    if( args[0].toLowerCase().includes('utc') ){
         console.log('Args recieved: '+args);
         var utcRegExp = /[+-]\d{4}/;
         var userOffset = args.match(utcRegExp);
