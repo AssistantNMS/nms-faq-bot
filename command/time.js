@@ -2,7 +2,6 @@ const moment = require('moment-timezone');
 //const channels = require('../constant/channels');
 const {gAPI} = require('googleapis');
 const readline = require('readline');
-const GoogleSheets = require('')
 const Discord = require('discord.js');
 
 //const dmChannel = channels.blend3rman;
