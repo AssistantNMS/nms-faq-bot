@@ -1,10 +1,11 @@
 const moment = require('moment-timezone');
-const channels = require('../constant/channels');
+//const channels = require('../constant/channels');
 const {gAPI} = require('googleapis');
 const readline = require('readline');
+const GoogleSheets = require('')
 const Discord = require('discord.js');
 
-const dmChannel = channels.blend3rman;
+//const dmChannel = channels.blend3rman;
 
 // Helper function to parse mentions in messages
 function parseMentions(bot,mention) {
@@ -31,10 +32,10 @@ const timeFnsInfo = (bot, message, prefix) => {
         .addField('Getting Server (UTC) Time', 'To view the UTC time of the server: '
                     +`\`${prefix}time\``)
         .addField('Setting Your Timezone', 'You may set your timezone in the following ways:\n'
-                    +'\t**1. By Country\/Area Name:** '
+                    +'\t**1. By Country\/Area Name (with DST and changing offsets):** '
                     +`\`${prefix}time set {Country}\/{Area}\`\n`
                     +'*Example*: '+`\`${prefix}time set America\/New_York\`\n\n`
-                    +'**2. By UTC Offset (recommended):** '
+                    +'**2. By UTC Offset (No DST or timezone changes):** '
                     +`\`${prefix}time set UTC{+\/-}{Offset in HHMM}\`\n`
                     +'*Example*: '+`\`${prefix}time set UTC+2230\`\n`
                     +'To find your offset visit [this page](https://www.timeanddate.com/time/map/) '
@@ -42,9 +43,25 @@ const timeFnsInfo = (bot, message, prefix) => {
     message.channel.send(helpEmbed);
 };
 
-const setUserTZone = (bot, message, args) => {
+// Function that saves a user's timezone preference
+const setUserTZone = (bot, message,prefix, args) => {
+    // If UTC offset is mentioned:
+    if( args.toUpperCase().includes('UTC') ){
+        var utcRegExp = /[+-]\d{4}/;
+        var userOffset = args.match(utcRegExp);
+        if (userOffset === null) 
+            return message.reply("Sorry, that's not a valid offset."
+                    +" Type the offset in this format:\n"
+                    +`\`${prefix}time set UTC{+\/-}{Offset in HHMM}\`\n`);
+        
+        let userTime = moment().utcOffset(userOffset);
+        message.channel.send("Your local time is"+ userTime.format('ddd hhmm A [(UTC]Z[)]'));
+    
+    }
 
-    let countryCode = args[1];
+    else {
+        let countryZone = args[args.length-1]
+    }
 
 };
 

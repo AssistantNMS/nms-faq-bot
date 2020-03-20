@@ -81,7 +81,8 @@ bot.on("message", async message => {
   let hasDevRole = authorRoles.some(role => role.name === 'Developer')
 
   if (hasDevRole === false) {
-    if (cmd === `${prefix}test` || cmd === `${prefix}version`) { //Restricted to developer only
+     // Restricted to developer only
+    if (cmd === `${prefix}test` || cmd === `${prefix}version`) {
       await emojiHelper.removeEmojiAsync(message, questionDrone.id);
       await message.react(droneEyeRed);
       return message.channel.send(responses.unauthorised);
