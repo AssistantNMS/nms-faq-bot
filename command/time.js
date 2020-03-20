@@ -48,7 +48,7 @@ const setUserTZone = (bot, message, prefix, args) => {
     if( args[0].toLowerCase().includes('utc') ){
         console.log('Args recieved: '+args);
         var utcRegExp = /[+-]\d{4}/;
-        var userOffset = args.match(utcRegExp);
+        var userOffset = args[0].match(utcRegExp);
         if (userOffset === null) 
             return message.reply("Sorry, that's not a valid offset."
                     +" Type the offset in this format:\n"
