@@ -4,8 +4,6 @@ const bot = new Discord.Client({
   disableEveryone: true,
   partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 });
-const ms = require("ms");
-const fs = require("fs");
 
 const helpCommands = require('./command/help');
 const infoCommands = require('./command/info');
@@ -30,7 +28,7 @@ bot.login(token);
 
 bot.on("ready", async () => {
   channelHelper.setVoiceChannelTextToCurrentAppReleaseName(bot);
-  //Console startup
+  // Console startup
   console.log(`${bot.user.username} is online. Current Prefix: ${prefix}`);
   // Set bot's status as "Listening to <prefix>help"
   bot.user.setPresence({ status: 'online' });
@@ -79,7 +77,8 @@ bot.on("message", async message => {
   let hasDevRole = authorRoles.some(role => role.name === 'Developer')
 
   if (hasDevRole === false) {
-    if (cmd === `${prefix}test` || cmd === `${prefix}version`) { //Restricted to developer only
+    // Restricted to developer only
+    if (cmd === `${prefix}test` || cmd === `${prefix}version`) {
       await emojiHelper.removeEmojiAsync(message, questionDrone.id);
       await message.react(droneEyeRed);
       return message.channel.send(responses.unauthorised);
@@ -91,7 +90,11 @@ bot.on("message", async message => {
   else if (cmd === `${prefix}links`) infoCommands.links(message);
   else if (cmd === `${prefix}support`) supportCommands.links(message);
   else if (cmd === `${prefix}faq`) infoCommands.faq(message);
-  else if (cmd === `${prefix}time`) timeCommands.currentTime(message, prefix);
+  else if (cmd === `${prefix}time`) {
+    if (message.content === cmd) timeCommands.currentTime(message, prefix);
+    else if (args.includes('set')) timeCommands.setUserTZone(message, prefix, messageArray.slice(2));
+    else if (args.includes('help')) timeCommands.timeFnsInfo(bot, message, prefix);
+  }
   else if (cmd === `${prefix}supportticket`) supportCommands.ticket(message);
   else if (cmd === `${prefix}help`) helpCommands.listOfCommands(message);
   else if (cmd === `${prefix}translation`) infoCommands.translation(message);
