@@ -10,7 +10,7 @@ const getCurrBotVer = (message) => {
                                   + '\nRelease timestamp: '+ botReleaseUTC);
 };
 
-async const getCurrAppVer = () => {
+const getCurrAppVer = async () => {
     let response;
     try {
         response = await fetch('https://api.nmsassistant.com/version');
