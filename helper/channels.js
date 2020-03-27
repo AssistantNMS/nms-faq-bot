@@ -2,7 +2,7 @@
 const versionCommands = require('./command/version');
 const channels = require('./constant/channels');
 
-const setVoiceChannelTextToCurrentAppReleaseName = (bot) => {
+async const setVoiceChannelTextToCurrentAppReleaseName = (bot) => {
     //Set the current app release version
     let appVer = await versionCommands.getCurrAppVer();
     if(appVer === -1) {

@@ -41,7 +41,7 @@ const support = (message) => {
         });
 };
 
-const appVersion = (message) => {
+async const appVersion = (message) => {
     let appVer = await versionCommands.getCurrAppVer();
     if(appVer === -1) {
         console.log("Couldn't get app version.");
