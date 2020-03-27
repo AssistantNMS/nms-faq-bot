@@ -22,6 +22,7 @@ const channelHelper = require('./helper/channels');
 // Fetch config information from Heroku config vars
 const token = process.env.BOT_TOKEN;
 const prefix = process.env.BOT_PREFIX;
+const port = process.env.PORT || 80;
 
 // Start up the API endpoint for the bot
 api.use(function(req, res, next) {
@@ -126,6 +127,6 @@ bot.on("message", async message => {
   }
 });
 
-api.listen(80, () => {
+api.listen(parseInt(port), () => {
   console.log("Bot API Endpoint online.");
 });
