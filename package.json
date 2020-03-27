@@ -15,6 +15,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node index.js",
     "test": "npm test"
   },
   "repository": {
