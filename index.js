@@ -29,7 +29,7 @@ moment.tz.setDefault();
 bot.login(token);
 
 bot.on("ready", async () => {
-  channelHelper.setVoiceChannelTextToCurrentAppReleaseName();
+  channelHelper.setVoiceChannelTextToCurrentAppReleaseName(bot);
   //Console startup
   console.log(`${bot.user.username} is online. Current Prefix: ${prefix}`);
   // Set bot's status as "Listening to <prefix>help"

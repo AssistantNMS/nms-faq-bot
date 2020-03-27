@@ -41,12 +41,13 @@ const support = (message) => {
         });
 };
 
-const appVersion = (message) => fetch('https://api.nmsassistant.com/version').then(response => {
-    const responsObj = response.json();
-    message.channel.send("Current AssistantNMS app release: " + responsObj.name);
-}).catch(exception => {
-    console.log('Could not get App version from API', exception);
-});
+const appVersion = (message) => fetch('https://api.nmsassistant.com/version')
+    .then(response => response.json())
+    .then(data => {
+        message.channel.send("Current AssistantNMS app release: " + data.name);
+    }).catch(exception => {
+        console.log('Could not get App version from API', exception);
+    });
 
 const faq = (message) => message.channel.send("If you can’t find the answers you’re looking for here, try checking out our full FAQ on Freshdesk: https://nmsassistant.freshdesk.com/");
 const translation = (message) => message.channel.send("If you are fluent in a language that isn't already implimented into the app, go to https://nmsassistant.com/tools/translate, or talk to @KhaozTopsy#7865 directly");
