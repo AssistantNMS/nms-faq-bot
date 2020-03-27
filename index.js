@@ -6,6 +6,7 @@ const bot = new Discord.Client({
 });
 const ms = require("ms");
 const fs = require("fs");
+const fetch = require("node-fetch");
 
 const helpCommands = require('./command/help');
 const infoCommands = require('./command/info');
