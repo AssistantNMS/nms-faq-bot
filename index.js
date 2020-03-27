@@ -23,6 +23,19 @@ const channelHelper = require('./helper/channels');
 const token = process.env.BOT_TOKEN;
 const prefix = process.env.BOT_PREFIX;
 
+// Start up the API endpoint for the bot
+api.use(function(req, res, next) {
+  // This puts a CORS header on all requests
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+api.get('/api/newVersion', async () => {
+  console.log('New Version ping recieved. Fetching details...');
+  channelHelper.setVoiceChannelTextToCurrentAppReleaseName(bot);
+});
+
 // Set the bot's timezone to the server's timezone (UTC)
 moment.tz.setDefault();
 
@@ -111,4 +124,8 @@ bot.on("message", async message => {
     await message.react(confuseDrone);
     return message.channel.send(responses.unrecognised);
   }
+});
+
+api.listen(80, () => {
+  console.log("Bot API Endpoint online.");
 });
