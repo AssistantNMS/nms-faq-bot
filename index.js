@@ -1,4 +1,6 @@
 const Discord = require("discord.js");
+const express = require('express');
+const api = express();
 const moment = require('moment-timezone');
 const bot = new Discord.Client({
   disableEveryone: true,
@@ -86,7 +88,7 @@ bot.on("message", async message => {
   }
 
   if (cmd === `${prefix}test`) testCommands.testMessage(message);
-  else if (cmd === `${prefix}version`) versionCommands.getCurrent(message);
+  else if (cmd === `${prefix}version`) versionCommands.getCurrBotVer(message);
   else if (cmd === `${prefix}links`) infoCommands.links(message);
   else if (cmd === `${prefix}support`) supportCommands.links(message);
   else if (cmd === `${prefix}faq`) infoCommands.faq(message);
