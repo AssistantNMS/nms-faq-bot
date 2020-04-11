@@ -13,5 +13,7 @@ Use ?help for a list of commands
 - ?guides
 - ?freshdesk
 
-![fontExample](https://github.com/NMSCD/About/raw/master/banner/current-small.png)
+<p align="center">
+  <img src="https://github.com/NMSCD/About/raw/master/banner/current-small.png">
+</p>
 
