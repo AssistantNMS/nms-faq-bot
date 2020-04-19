@@ -48,7 +48,7 @@ const directResponse = (bot, message, args) => {
         .setFooter('Message ID: ' + message.id);
 
       // Step 2: send it to the faq-bot-dms channel
-      const bot_faq_channel = bot.channels.get(channels.faq);
+      const bot_faq_channel = bot.channels(channels.faq);
       bot_faq_channel.send(botResponseEmbed);
 };
 
