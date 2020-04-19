@@ -37,6 +37,20 @@ const directMessage = (bot, message, args) => {
 };
 
 
+const directResponse = (bot, message, args) => {
+    var modResponse = args.join(" ");
+    const botResponseEmbed = new Discord.RichEmbed()
+        .setColor('#0099ff')
+        .setTitle('Mod Resonse Test')
+        .addField('Response', modResponse)
+        .addField('Mod on Duty'', message.author.username)
+        .setTimestamp()
+        .setFooter('Message ID: ' + message.id);
+    const bot_faq_channel = bot.channels.get(channels.faq);
+    bot_faq_channel.send(botResponseEmbed);
+};
+
+
 const listOfCommands = (message) => {
     let help = new Discord.RichEmbed()
         .setDescription("**List of Commands**")
@@ -56,4 +70,5 @@ const listOfCommands = (message) => {
 }
 
 exports.directMessage = directMessage;
+exports.directResponse = directResponse;
 exports.listOfCommands = listOfCommands;

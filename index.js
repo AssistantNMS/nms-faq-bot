@@ -86,7 +86,7 @@ bot.on("message", async message => {
   if (cmd.startsWith(prefix) == false) return;
   if (cmd === prefix) return;
 
-  // Make the bot react to every command with the Question emoji,  
+  // Make the bot react to every command with the Question emoji,
   await message.react(questionDrone);
 
   let authorRoles = await message.member.roles;
@@ -117,6 +117,7 @@ bot.on("message", async message => {
   else if (cmd === `${prefix}guides`) infoCommands.guides(message);
   else if (cmd === `${prefix}freshdesk`) supportCommands.freshdesk(message);
   else if (cmd === `${prefix}appversion`) infoCommands.appVersion(message);
+  else if (cmd === `${prefix}reply`) helpCommands.directResponse(message, bot, args);
   else {
     // If the message contained the prefix but was not a valid command,
     // react with the corruptDrone emoji and inform of invalid command
