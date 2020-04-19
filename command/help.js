@@ -23,7 +23,7 @@ const directMessage = (bot, message, args) => {
     //   description: userMessage
     // };
     var botMessage = "Heads up! @"
-        + message.author.username + message.author.discriminator
+        + message.author.username "#"+ message.author.discriminator
         + " would like some help with this:\n"
         + "> " + userMessage;
     console.log(botMessage);
@@ -46,7 +46,7 @@ const directResponse = (bot, message, args) => {
         .addField('Mod on Duty')
         .setTimestamp()
         .setFooter('Message ID: ' + message.id);
-    const bot_faq_channel = bot.channels.get(channels.faq);
+
     bot_faq_channel.send(botResponseEmbed);
 };
 
