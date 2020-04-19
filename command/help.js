@@ -43,7 +43,7 @@ const directResponse = (bot, message, args) => {
         .setColor('#0099ff')
         .setTitle('Mod Resonse Test')
         .addField('Response', modResponse)
-        .addField('Mod on Duty'', message.author.username)
+        .addField('Mod on Duty', message.author.username)
         .setTimestamp()
         .setFooter('Message ID: ' + message.id);
     const bot_faq_channel = bot.channels.get(channels.faq);
