@@ -47,7 +47,9 @@ const directResponse = (bot, message, args) => {
         .setTimestamp()
         .setFooter('Message ID: ' + message.id);
 
-    bot_faq_channel.send(botResponseEmbed);
+      // Step 2: send it to the faq-bot-dms channel
+      const bot_faq_channel = bot.channels.get(channels.faq);
+      bot_faq_channel.send(botResponseEmbed);
 };
 
 
