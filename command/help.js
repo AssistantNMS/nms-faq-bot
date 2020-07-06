@@ -48,13 +48,13 @@ const directMessage = (bot, message, args) => {
         //.setFooter('Message ID: ' + message.id);
 
     //const dev_channel = bot.channels.get(channels.dev)
-    message.channel.send(botResponseEmbed);
+    //message.channel.send(botResponseEmbed);
       // Step 2: send it to the faq-bot-dms channel
       //const bot_faq_channel = bot.channels.get(channels.faq);
       //bot_faq_channel.send(botResponseEmbed);
 
       //TODO. Fix that ^
-};
+//};
 
 
 const listOfCommands = (message) => {
