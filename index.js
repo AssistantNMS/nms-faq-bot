@@ -50,49 +50,26 @@ bot.on("ready", async () => {
   // Set bot's status as "Listening to <prefix>help"
   bot.user.setPresence({ status: 'online' });
   bot.user.setActivity(`${prefix}help`, { type: 'LISTENING' });
-
-  bot.on('voiceStateUpdate', (oldMember, newMember) => {
-      let newUserChannel = newMember.voiceChannel
-      let oldUserChannel = oldMember.voiceChannel
-      var Testchannel = bot.channels.get('625258484606435328');
-
-      if (oldUserChannel === 674493680614244382 && newUserChannel !== 660828124002517022) {
-          console.log('Testing');
-          Testchannel.send('has joined a voice channel');
-
-          server.createChannel(eventName, 'voice').then( // Create the actual voice channel.
-              (chan) => {
-                  chan.setParent("626809780899545098").then( // Move the voice channel to the current message's parent category.
-                      (chan2) => {
-                          console.log("stage 1");
-                          console.log(chan2);
-                          //console.log(`Set the category of ${chan2.name} to ${chan2.parent.name}`);
-                          chan2.overwritePermissions(message.guild.roles.find('name', '@everyone'), { 'CREATE_INSTANT_INVITE': false }); // Give the channel some standard permissions.
-                          chan2.overwritePermissions(message.guild.roles.find('name', permsName), {
-                              'CREATE_INSTANT_INVITE': false, 'ADD_REACTIONS': true,
-                              'READ_MESSAGES': true, 'SEND_MESSAGES': true,
-                              'SEND_TTS_MESSAGES': true, 'MANAGE_MESSAGES': true,
-                              'EMBED_LINKS': true, 'ATTACH_FILES': true,
-                              'READ_MESSAGE_HISTORY': true, 'MENTION_EVERYONE': true,
-                              'EXTERNAL_EMOJIS': true, 'CONNECT': true,
-                              'SPEAK': true
-                          });
-                          console.log("stage 2");
-                      }
-                  ).catch(console.error);
-              }
-          ).catch(console.error);
-          return '```Added```';
-      }
-      else if (newUserChannel === 660828124002517022) {
-          console.log('Testing');
-          Testchannel.send('has left a voice channel');
-          // User leaves a voice channel
-      }
-  })
 });
 
 bot.on("message", async message => {
+
+    bot.on('voiceStateUpdate', (oldMember, newMember) => {
+        console.log('Voice State');
+        let newUserChannel = newMember.voiceChannel
+        let oldUserChannel = oldMember.voiceChannel
+        var Testchannel = bot.channels.get('625258484606435328');
+
+        if (oldUserChannel === 674493680614244382 && newUserChannel !== 660828124002517022) {
+            console.log('Join');
+            Testchannel.send('has joined a voice channel');
+        }
+        else if (newUserChannel === 660828124002517022) {
+            console.log('Leave');
+            Testchannel.send('has left a voice channel');
+            // User leaves a voice channel
+        }
+    })
 
   // Ignore messages by the bot itself
   if (message.author.bot) return;
