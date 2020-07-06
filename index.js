@@ -94,7 +94,7 @@ bot.on("message", async message => {
     let hasDevRole = authorRoles.some(role => role.name === 'Core Devs')
     let hasJrDevRole = authorRoles.some(role => role.name === 'New Developer')
 
-  if (hasDevRole || hasJrDevRole === false) {
+  if (hasDevRole === false) {
     // Restricted to developer only
     if (cmd === `${prefix}test` || cmd === `${prefix}version`) {
       await emojiHelper.removeEmojiAsync(message, questionDrone.id);
@@ -120,7 +120,7 @@ bot.on("message", async message => {
   else if (cmd === `${prefix}freshdesk`) supportCommands.freshdesk(message);
   else if (cmd === `${prefix}appversion`) infoCommands.appVersion(message);
   else if (cmd === `${prefix}reply`) helpCommands.directResponse(message, bot, args);
-  else if (cmd === `${prefix}lfg`) lfgCommands.lfgPing(message);
+  else if (cmd === `${prefix}lfg`) lfgCommands.lfgPing(message, args);
   else {
     // If the message contained the prefix but was not a valid command,
     // react with the corruptDrone emoji and inform of invalid command
