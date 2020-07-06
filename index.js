@@ -91,9 +91,10 @@ bot.on("message", async message => {
   await message.react(questionDrone);
 
   let authorRoles = await message.member.roles;
-  let hasDevRole = authorRoles.some(role => role.name === 'Developer')
+    let hasDevRole = authorRoles.some(role => role.name === 'Core Devs')
+    let hasJrDevRole = authorRoles.some(role => role.name === 'New Developer')
 
-  if (hasDevRole === false) {
+  if (hasDevRole || hasJrDevRole === false) {
     // Restricted to developer only
     if (cmd === `${prefix}test` || cmd === `${prefix}version`) {
       await emojiHelper.removeEmojiAsync(message, questionDrone.id);
