@@ -52,12 +52,12 @@ bot.on("ready", async () => {
   bot.user.setActivity(`${prefix}help`, { type: 'LISTENING' });
 
   bot.on('voiceStateUpdate', (oldMember, newMember) => {
-      console.log('Testing');
       let newUserChannel = newMember.voiceChannel
       let oldUserChannel = oldMember.voiceChannel
       var Testchannel = bot.channels.get('625258484606435328');
 
-      if (oldUserChannel === 6624658375583989792 && newUserChannel !== 660828124002517022) {
+      if (oldUserChannel === 674493680614244382 && newUserChannel !== 660828124002517022) {
+          console.log('Testing');
           Testchannel.send('has joined a voice channel');
 
           server.createChannel(eventName, 'voice').then( // Create the actual voice channel.
@@ -84,7 +84,8 @@ bot.on("ready", async () => {
           ).catch(console.error);
           return '```Added```';
       }
-      else if (newUserChannel === 662465837558398979) {
+      else if (newUserChannel === 660828124002517022) {
+          console.log('Testing');
           Testchannel.send('has left a voice channel');
           // User leaves a voice channel
       }
