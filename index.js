@@ -63,7 +63,7 @@ bot.on("message", async message => {
             Testchannel.send('has joined a voice channel');
             // User Joins a voice channel
         } else if (newUserChannel === 489674797261783041) {
-            Testchannel.send('has left a voice channel');
+            channel.send('has left a voice channel');
             // User leaves a voice channel
         }
     })
