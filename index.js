@@ -53,6 +53,21 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async message => {
+
+    bot.on('voiceStateUpdate', (oldMember, newMember) => {
+        console.log('Testing');
+        let newUserChannel = newMember.voiceChannel
+        let oldUserChannel = oldMember.voiceChannel
+        var Testchannel = bot.channels.get('639553928136228864');
+        if (oldUserChannel === 674493680614244382 && newUserChannel !== 660828124002517022) {
+            Testchannel.send('has joined a voice channel');
+            // User Joins a voice channel
+        } else if (newUserChannel === 489674797261783041) {
+            channel.send('has left a voice channel');
+            // User leaves a voice channel
+        }
+    })
+
   // Ignore messages by the bot itself
   if (message.author.bot) return;
 
