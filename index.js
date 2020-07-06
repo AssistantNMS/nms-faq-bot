@@ -13,6 +13,7 @@ const supportCommands = require('./command/support');
 const versionCommands = require('./command/version');
 const testCommands = require('./command/test');
 const timeCommands = require('./command/time');
+const lfgCommands = require('./command/lfg');
 
 const responses = require('./constant/responses');
 
@@ -118,6 +119,7 @@ bot.on("message", async message => {
   else if (cmd === `${prefix}freshdesk`) supportCommands.freshdesk(message);
   else if (cmd === `${prefix}appversion`) infoCommands.appVersion(message);
   else if (cmd === `${prefix}reply`) helpCommands.directResponse(message, bot, args);
+  else if (cmd === `${prefix}lfg`) lfgCommands.lfgPing(message);
   else {
     // If the message contained the prefix but was not a valid command,
     // react with the corruptDrone emoji and inform of invalid command
