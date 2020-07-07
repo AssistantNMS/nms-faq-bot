@@ -122,6 +122,10 @@ bot.on("message", async message => {
     }
   }
 
+  if (message.channel.id === '660827424195608586') {
+      if (cmd === `${prefix}lfg`) lfgCommands.lfgPing(message, args);
+  }
+
   if (cmd === `${prefix}test`) testCommands.testMessage(message);
   else if (cmd === `${prefix}version`) versionCommands.getCurrBotVer(message);
   else if (cmd === `${prefix}links`) infoCommands.links(message);
@@ -139,7 +143,6 @@ bot.on("message", async message => {
   else if (cmd === `${prefix}freshdesk`) supportCommands.freshdesk(message);
   else if (cmd === `${prefix}appversion`) infoCommands.appVersion(message);
   else if (cmd === `${prefix}reply`) helpCommands.directResponse(message, bot, args);
-  else if (cmd === `${prefix}lfg`) lfgCommands.lfgPing(message, args);
   else {
     // If the message contained the prefix but was not a valid command,
     // react with the corruptDrone emoji and inform of invalid command
