@@ -14,6 +14,7 @@ const versionCommands = require('./command/version');
 const testCommands = require('./command/test');
 const timeCommands = require('./command/time');
 const lfgCommands = require('./command/lfg');
+const msgUtilities = require('./command/msgUtilities');
 
 const responses = require('./constant/responses');
 
@@ -142,6 +143,7 @@ bot.on("message", async message => {
   else if (message.channel.id === '660827424195608586') {
     if (cmd === `${prefix}lfg`) lfgCommands.lfgPing(message, args);
   }
+  else if (cmd === `${prefix}echo`) msgUtilities.echoMessage(message, args);
   else {
     // If the message contained the prefix but was not a valid command,
     // react with the corruptDrone emoji and inform of invalid command

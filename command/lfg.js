@@ -1,7 +1,5 @@
 const Discord = require("discord.js");
 
-const channels = require('../constant/channels');
-
 const lfgPing = (message, args) => {
 
     if (!args.length) {
