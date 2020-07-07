@@ -12,12 +12,18 @@ const lfgPing = (message, args) => {
         let game = args[0];
         let platform = args[1];
 
-        switch (args[1]) {
-            case 'Xbox1':
-                message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + game + " group on Xbox 1!");
+        if (args[1] === 'Xbox1') {
+            message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + game + " group on Xbox 1!");
         }
 
-        message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + game + " group on " + platform + "!");
+        //switch (args[1]) {
+        //case 'Xbox1':
+        //message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + game + " group on Xbox 1!");
+        //}
+
+        else {
+            message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + game + " group on " + platform + "!");
+        }
         //message.channel.send("Less than 2");
 
     }
