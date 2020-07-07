@@ -112,9 +112,9 @@ bot.on("message", async message => {
   await message.react(questionDrone);
 
   let authorRoles = await message.member.roles;
-    let hasDevRole = authorRoles.some(role => role.name === 'Core Devs')
-    let hasJrDevRole = authorRoles.some(role => role.name === 'New Developer')
-    let hasModRole = authorRole.some(role => role.name === 'Moderator')
+  let hasDevRole = authorRoles.some(role => role.name === 'Core Devs')
+  let hasJrDevRole = authorRoles.some(role => role.name === 'New Developer')
+  let hasModRole = authorRoles.some(role => role.name === 'Moderator')
 
   if (hasDevRole === false || hasJrDevRole === false) {
     // Restricted to developer only
