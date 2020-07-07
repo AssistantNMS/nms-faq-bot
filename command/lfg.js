@@ -12,7 +12,7 @@ const lfgPing = (message, args) => {
         return message.channel.send("//ERROR: You didn't provide all the data!//");
     }
 
-    if (args.length > 2) {
+    if (args.length > 3) {
         let game = args[0];
         let platform = args[1];
 
@@ -20,7 +20,7 @@ const lfgPing = (message, args) => {
 
     }
 
-    else if (args.length < 2) {
+    else if (args.length < 3) {
         let gameCombined = args[0] + " " + args[1];
         let platform = args[2];
 
