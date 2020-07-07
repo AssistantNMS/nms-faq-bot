@@ -13,7 +13,7 @@ const lfgPing = (message, args) => {
         return message.channel.send("//ERROR: You didn't provide all the data!//");
     }
 
-    else if (!args[1]) {
+    if (!args[1]) {
 
         if (!args[3]) {
             message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + game + " group on " + platform + "!");
@@ -22,7 +22,7 @@ const lfgPing = (message, args) => {
         message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + game + " group on " + platformCombined + "!");
     }
 
-    else if (!args[3]) {
+    if (!args[3]) {
         message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + gameCombined + " group on " + platform + "!");
     }
 
