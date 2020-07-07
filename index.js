@@ -90,7 +90,8 @@ bot.on("message", async message => {
   // Now let's handle all messages, see if we get any commands
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
-  let args = messageArray.slice(1);
+  //let args = messageArray.slice(1);
+  const args = message.content.slice(prefix.length).split(/ +/);
   // This handles all DMs to the bot user
   if (message.channel.type === "dm") {
     console.log("Direct Message");
