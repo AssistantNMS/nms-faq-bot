@@ -92,6 +92,7 @@ bot.on("message", async message => {
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
+  const amount = args.join(' ');
 
   // This handles all DMs to the bot user
   if (message.channel.type === "dm") {
@@ -144,6 +145,7 @@ bot.on("message", async message => {
     if (cmd === `${prefix}lfg`) lfgCommands.lfgPing(message, args);
   }
   else if (cmd === `${prefix}echo`) msgUtilities.echoMessage(message, args);
+  else if (cmd === `${prefix}clear`) msgUtilities.clearMessages(message, amount);
   else {
     // If the message contained the prefix but was not a valid command,
     // react with the corruptDrone emoji and inform of invalid command

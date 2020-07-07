@@ -1,10 +1,12 @@
 const Discord = require("discord.js");
 
+const responses = require('./constant/responses');
+
 const lfgPing = (message, args) => {
 
     if (!args.length) {
 
-        return message.channel.send("//ERROR: You didn't provide all the data!//");
+        return message.channel.send(responses.incomplete);
     }
 
     if (args.length < 3) {
