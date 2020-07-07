@@ -18,10 +18,7 @@ const clearMessages = async (message, amount) => {
 
     await message.channel.fetchMessages({ limit: amount }).then(messages => {
         message.channel.delete(100);
-        setTimeout(function () {
-            message.channel.bulkDelete(messages);
-        }, 150);
-        
+        message.channel.bulkDelete(messages);
     });
 }
 
