@@ -14,6 +14,11 @@ const lfgPing = (message, args) => {
     }
 
     else if (!args[1]) {
+
+        if (!args[3]) {
+            message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + game + " group on " + platform + "!");
+        }
+
         message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + game + " group on " + platformCombined + "!");
     }
 
@@ -21,11 +26,7 @@ const lfgPing = (message, args) => {
         message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + gameCombined + " group on " + platform + "!");
     }
 
-    else if (!args[1] && args[3]) {
-        message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + game + " group on " + platform + "!");
-    }
-
-    //message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + gameCombined + " group on " + platformCombined + "!");
+    message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + gameCombined + " group on " + platformCombined + "!");
     
 }
     
