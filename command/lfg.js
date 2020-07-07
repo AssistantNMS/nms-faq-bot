@@ -16,7 +16,8 @@ const lfgPing = (message, args) => {
         let game = args[0];
         let platform = args[1];
 
-        message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + game + " group on " + platform + "!");
+        //message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + game + " group on " + platform + "!");
+        message.channel.send("Less than 3");
 
     }
 
@@ -24,7 +25,8 @@ const lfgPing = (message, args) => {
         let gameCombined = args[0] + " " + args[1];
         let platform = args[2];
 
-        message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + gameCombined + " group on " + platform + "!");
+        //message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + gameCombined + " group on " + platform + "!");
+        message.channel.send("More than 3");
 
     }
 }
