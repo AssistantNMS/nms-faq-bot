@@ -26,8 +26,10 @@ const lfgPing = (message, args) => {
         message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + gameCombined + " group on " + platform + "!");
     }
 
-    message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + gameCombined + " group on " + platformCombined + "!");
-    
+    else {
+        message.channel.send("<@&721218924942721024> " + message.author.username + " is looking for a " + gameCombined + " group on " + platformCombined + "!");
+    }
+   
 }
     
 
