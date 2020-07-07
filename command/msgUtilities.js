@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-const responses = require('./constant/responses');
+const responses = require('../constant/responses');
 
 const echoMessage = (message, args) => {
     var userInput = args.join(" ");
