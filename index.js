@@ -114,13 +114,23 @@ bot.on("message", async message => {
   let authorRoles = await message.member.roles;
     let hasDevRole = authorRoles.some(role => role.name === 'Core Devs')
     let hasJrDevRole = authorRoles.some(role => role.name === 'New Developer')
+    let hasModRole = authorRole.some(role => role.name === 'Moderator')
 
-  if (hasDevRole === false) {
+  if (hasDevRole === false || hasJrDevRole === false) {
     // Restricted to developer only
     if (cmd === `${prefix}test` || cmd === `${prefix}version`) {
-      await emojiHelper.removeEmojiAsync(message, questionDrone.id);
-      await message.react(droneEyeRed);
-      return message.channel.send(responses.unauthorised);
+        await emojiHelper.removeEmojiAsync(message, questionDrone.id);
+        await message.react(droneEyeRed);
+        return message.channel.send(responses.unauthorised);
+    }
+  }
+  
+  if (hasModRole === false) {
+    // Restricted to mod only
+    if (cmd === `${prefix}echo` || cmd === `${prefix}clear`) {
+        await emojiHelper.removeEmojiAsync(message, questionDrone.id);
+        await message.react(droneEyeRed);
+        return message.channel.send(responses.unauthorised);
     }
   }
 
