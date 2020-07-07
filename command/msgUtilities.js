@@ -9,7 +9,7 @@ const echoMessage = (message, args) => {
     message.channel.send(userInput);
 }
 
-const clearMessages = (message, amount) => {
+const clearMessages = async (message, amount) => {
     if (!amount) return message.reply(responses.incomplete);
     if (isNaN(amount)) return message.reply(responses.notNumber);
 
