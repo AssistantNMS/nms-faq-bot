@@ -15,6 +15,7 @@ const testCommands = require('./command/test');
 const timeCommands = require('./command/time');
 const lfgCommands = require('./command/lfg');
 const msgUtilities = require('./command/msgUtilities');
+const feedbackCommands = require('./command/feedback');
 
 const responses = require('./constant/responses');
 
@@ -98,8 +99,9 @@ bot.on("message", async message => {
   if (message.channel.type === "dm") {
     console.log("Direct Message");
     // The bot will forward all queries with the <prefix>help command to the faqchannel
-    if (cmd.toLowerCase() === `${prefix}modhelp`) helpCommands.directMessage(bot, message, args);
+    if (cmd.toLowerCase() === `${prefix}modhelp`) helpCommands.directMessageHelp(bot, message, args);
     else if (cmd.toLowerCase() === `${prefix}info`) infoCommands.infoResponse(message, prefix);
+    else if (cmd.toLowerCase() === `${prefix}feedback` || cmd.toLowerCase() === `${prefix}suggest`) feedbackCommands.directMessageFeedback(bot, message, args);
     else infoCommands.defaultResponse(message, prefix); // Handle all non-recognized commands/msgs
     return;
   }
@@ -156,6 +158,7 @@ bot.on("message", async message => {
   }
   else if (cmd === `${prefix}echo`) msgUtilities.echoMessage(message, args);
   else if (cmd === `${prefix}clear`) msgUtilities.clearMessages(message, amount);
+  else if (cmd === `${prefix}feedback` || cmd === `${prefix}feedback`) feedbackCommands.feedback(message, bot, args);
   else {
     // If the message contained the prefix but was not a valid command,
     // react with the corruptDrone emoji and inform of invalid command

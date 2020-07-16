@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const channels = require('../constant/channels');
 const responses = require('../constant/responses');
 
-const directMessage = (bot, message, args) => {
+const directMessageHelp = (bot, message, args) => {
     // Step 1: Grab the user's message to be forwarded and garnish it with related info
     var userMessage = args.join(" ");
     const botMessageEmbed = new Discord.RichEmbed()
@@ -75,6 +75,6 @@ const listOfCommands = (message) => {
     // })
 }
 
-exports.directMessage = directMessage;
+exports.directMessageHelp = directMessageHelp;
 exports.directResponse = directResponse;
 exports.listOfCommands = listOfCommands;

@@ -2,11 +2,11 @@ const Discord = require("discord.js");
 const versionCommands = require('../command/version');
 
 const infoResponse = (message, prefix) => {
-    message.reply("I'm an FAQ Bot, made by Vapour38 and Blend3rman to be used on the AssistantforNMS Discord server, which can be found here: https://discord.gg/sVF32Pq"
+    message.reply("I'm an FAQ Bot, made by Vapour38 and Blend3rman to be used on the Assistant Apps Discord server, which can be found here: https://discord.gg/dkfabM3"
         + " On the server, I have a list of FAQs which can be accessed by typing their command. A list of commands can be found by typing `" + prefix + "help` on the server."
         + " I also have a list of commands that can be used right here! By using `" + prefix + "info` right here, you can bring this message up."
         + " By using `" + prefix + "modhelp`, then your message, you can send a message to the mods at the AssistantNMS sever asking for help. They will reply to you here."
-        + " By using `" + prefix + "suggest`, then your suggestion, you can suggest an FAQ to the mods, which they will review and possibly add to the bot. A suggestion can range from anything from a question you want answered, to a bug you have found a fix for.");
+        + " By using `" + prefix + "suggest` or `" + prefix + "feedback`, then your feedback, you can suggest an FAQ to the mods, which they will review and possibly add to the bot, or give us feedback about the server, app or even the bot.");
 
 };
 
@@ -14,7 +14,7 @@ const defaultResponse = (message, prefix) => {
     message.reply("Hi there, would you like help from a human? Or would you like to suggest an FAQ or just get general info on me?"
         + " Send me your query with `" + prefix + "modhelp <your question>`,"
         + " and I'll find a mod to help you out!"
-        + " If you want to suggest an FAQ or suggestion for the server, type `" + prefix + "suggest <your message>`."
+        + " If you want to suggest an FAQ or suggestion for the server, type `" + prefix + "suggest <your message>`, which can be used here or on the server."
         + " Or, if you want some info on what I do, type `" + prefix + "info`.");
 };
 
@@ -23,7 +23,7 @@ const links = (message) => {
         .setDescription("**Links**")
         .setColor("#148AFF")
         .addField("__**Applications**__", "Website: https://nmsassistant.com\nAndroid: https://play.google.com/store/apps/details?id=com.kurtlourens.no_mans_sky_recipes\niOS: https://apps.apple.com/us/app/id1480287625\nWebApp: https://app.nmsassistant.com\nDiscord Bot: Coming Soon")
-        .addField("__**Social**__", "Reddit: https://www.reddit.com/r/AssistantforNMS\nTwitter: https://twitter.com/AssistantNMS\nInstagram: https://instagram.com/AssistantNMS\nFacebook: https://facebook.com/AssistantNMS\nSteam Community Page: https://steamcommunity.com/groups/AssistantNMS\nNoMansSky Social: https://nomanssky.social/AssistantNMS");
+        .addField("__**Social**__", "Reddit: https://www.reddit.com/r/AssistantNMS/\nTwitter: https://twitter.com/AssistantNMS\nInstagram: https://instagram.com/AssistantNMS\nFacebook: https://facebook.com/AssistantNMS\nSteam Community Page: https://steamcommunity.com/groups/AssistantNMS\nNoMansSky Social: https://nomanssky.social/AssistantNMS");
 
     message.channel.send(links);
 };
@@ -52,8 +52,8 @@ const appVersion = async (message) => {
 };
 
 const faq = (message) => message.channel.send("If you can’t find the answers you’re looking for here, try checking out our full FAQ on Freshdesk: https://nmsassistant.freshdesk.com/");
-const translation = (message) => message.channel.send("If you are fluent in a language that isn't already implimented into the app, go to https://nmsassistant.com/tools/translate, or talk to @KhaozTopsy#7865 directly");
-const guides = (message) => message.channel.send("If you would like to contribute your knowledge of NMS towards the app, head to https://nmsassistant.com/tools/guide and create a guide for us! If approved, this will then be featured in the guides section of the app");
+const translation = (message) => message.channel.send("If you are fluent in a language that isn't already implimented into the app, go to https://tools.nmsassistant.com/translate, or talk to @KhaozTopsy#7865 directly");
+const guides = (message) => message.channel.send("If you would like to contribute your knowledge of NMS towards the app, head to https://tools.nmsassistant.com/guide and create a guide for us! If approved, this will then be featured in the guides section of the app");
 
 
 exports.infoResponse = infoResponse;
