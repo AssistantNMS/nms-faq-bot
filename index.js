@@ -158,7 +158,7 @@ bot.on("message", async message => {
   }
   else if (cmd === `${prefix}echo`) msgUtilities.echoMessage(message, args);
   else if (cmd === `${prefix}clear`) msgUtilities.clearMessages(message, amount);
-  else if (cmd === `${prefix}feedback` || cmd === `${prefix}feedback`) feedbackCommands.feedback(message, bot, args);
+  else if (cmd === `${prefix}feedback` || cmd === `${prefix}suggest`) feedbackCommands.feedback(message, bot, args);
   else {
     // If the message contained the prefix but was not a valid command,
     // react with the corruptDrone emoji and inform of invalid command
