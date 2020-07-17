@@ -55,7 +55,7 @@ const appVersion = async (message) => {
 const communityLinks = async (message) => {
     let cLinks = await versionCommands.getCommunityLinks();
     var markdown = "Community Links: " + cLinks.map((clink) => `[${clink.name}](${clink.externalUrl})`).join("\n");
-    const embed = new Discord.MessageEmbed()
+    const embed = new Discord.RichEmbed()
         .setColor('#EFFF00')
         .setImage('https://nmsassistant.com/assets/favicon/android-chrome-40x40.png')
         .setTitle('Community Links')
