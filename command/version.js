@@ -34,7 +34,7 @@ const getCommunityLinks = async () => {
     }
 
     let data = await response.json();
-    return data.name;
+    return data;
 };
 
 exports.getCurrBotVer = getCurrBotVer;
