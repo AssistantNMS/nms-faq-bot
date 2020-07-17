@@ -55,12 +55,14 @@ const appVersion = async (message) => {
 const communityLinks = async (message) => {
     let cLinks = await versionCommands.getCommunityLinks();
 
+    var messageSend = "Community Links: " + cLinks.map((clink) => clink.name + ": " + clink.externalUrl).join("\n")
+
     if(cLinks === -1) {
         console.log("Couldn't get Community Links.");
         message.channel.send("Couldn't get Community Links.");
     }
     else
-        message.channel.send("Community Links: " + cLinks.map((clink) => clink.name + ": " + clink.externalUrl).join("\n"));
+        messageSend.channel.send(trim(message, 200));
 };
 
 const faq = (message) => message.channel.send("If you can’t find the answers you’re looking for here, try checking out our full FAQ on Freshdesk: https://nmsassistant.freshdesk.com/");
