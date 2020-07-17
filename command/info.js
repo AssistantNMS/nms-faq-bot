@@ -53,6 +53,8 @@ const appVersion = async (message) => {
 };
 
 const communityLinks = async (message) => {
+    const trim = (str, max) => ((str.length > max) ? `${str.slice(0, max - 3)}...` : str);
+
     let cLinks = await versionCommands.getCommunityLinks();
     var markdown = "Community Links: " + cLinks.map((clink) => `[${clink.name}](${clink.externalUrl})`).join("\n");
     const embed = new Discord.RichEmbed()
@@ -60,7 +62,7 @@ const communityLinks = async (message) => {
         .setImage('https://nmsassistant.com/assets/favicon/android-chrome-40x40.png')
         .setTitle('Community Links')
         .setDescription(trim(markdown, 2048))
-        
+
     if(cLinks === -1) {
         console.log("Couldn't get Community Links.");
         message.channel.send("Couldn't get Community Links.");
