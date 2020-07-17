@@ -59,8 +59,8 @@ const communityLinks = async (message) => {
         .setColor('#EFFF00')
         .setImage('https://nmsassistant.com/assets/favicon/android-chrome-40x40.png')
         .setTitle('Community Links')
-        .setDescription(markdown)
-
+        .setDescription(trim(markdown, 2048))
+        
     if(cLinks === -1) {
         console.log("Couldn't get Community Links.");
         message.channel.send("Couldn't get Community Links.");
