@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+
 const versionCommands = require('../command/version');
 
 const infoResponse = (message, prefix) => {
@@ -51,6 +52,16 @@ const appVersion = async (message) => {
         message.channel.send("Current app version: "+appVer);
 };
 
+const communityLinks = async (message) => {
+    let cLinks = await versionCommands.getCommunityLinks();
+    if(cLinks === -1) {
+        console.log("Couldn't get Community Links.");
+        message.channel.send("Couldn't get Community Links.");
+    }
+    else
+        message.channel.send(cLinks);
+};
+
 const faq = (message) => message.channel.send("If you can’t find the answers you’re looking for here, try checking out our full FAQ on Freshdesk: https://nmsassistant.freshdesk.com/");
 const translation = (message) => message.channel.send("If you are fluent in a language that isn't already implimented into the app, go to https://tools.nmsassistant.com/translate, or talk to @KhaozTopsy#7865 directly");
 const guides = (message) => message.channel.send("If you would like to contribute your knowledge of NMS towards the app, head to https://tools.nmsassistant.com/guide and create a guide for us! If approved, this will then be featured in the guides section of the app");
@@ -64,3 +75,4 @@ exports.faq = faq;
 exports.translation = translation;
 exports.guides = guides;
 exports.appVersion = appVersion;
+exports.communityLinks = communityLinks;
