@@ -54,8 +54,8 @@ const appVersion = async (message) => {
 
 const communityLinks = async (message) => {
     let cLinks = await versionCommands.getCommunityLinks();
-
     var messageSend = "Community Links: " + cLinks.map((clink) => clink.name + ": " + clink.externalUrl).join("\n")
+    const trim = (str, max) => ((str.length > max) ? `${str.slice(0, max - 3)}...` : str);
 
     if(cLinks === -1) {
         console.log("Couldn't get Community Links.");
