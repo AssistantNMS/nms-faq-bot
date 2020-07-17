@@ -62,7 +62,7 @@ const communityLinks = async (message) => {
         message.channel.send("Couldn't get Community Links.");
     }
     else
-        messageSend.channel.send(trim(message, 200));
+        message.channel.send(trim(messageSend, 200));
 };
 
 const faq = (message) => message.channel.send("If you can’t find the answers you’re looking for here, try checking out our full FAQ on Freshdesk: https://nmsassistant.freshdesk.com/");
