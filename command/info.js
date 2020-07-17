@@ -54,15 +54,19 @@ const appVersion = async (message) => {
 
 const communityLinks = async (message) => {
     let cLinks = await versionCommands.getCommunityLinks();
-    var messageSend = "Community Links: " + cLinks.map((clink) => clink.name + ": " + clink.externalUrl).join("\n")
-    const trim = (str, max) => ((str.length > max) ? `${str.slice(0, max - 3)}...` : str);
+    var markdown = "Community Links: " + cLinks.map((clink) => `[${clink.name}](${clink.externalUrl})`).join("\n");
+    const embed = new Discord.MessageEmbed()
+        .setColor('#EFFF00')
+        .setImage('https://nmsassistant.com/assets/favicon/android-chrome-40x40.png')
+        .setTitle('Community Links')
+        .setDescription(markdown)
 
     if(cLinks === -1) {
         console.log("Couldn't get Community Links.");
         message.channel.send("Couldn't get Community Links.");
     }
     else
-        message.channel.send(trim(messageSend, 200));
+        message.channel.send(embed);
 };
 
 const faq = (message) => message.channel.send("If you can’t find the answers you’re looking for here, try checking out our full FAQ on Freshdesk: https://nmsassistant.freshdesk.com/");
