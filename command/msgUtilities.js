@@ -16,7 +16,7 @@ const clearMessages = async (message, amount) => {
     if (amount > 100) return message.reply('//ERROR: I am unable to delete more than 100 messages at once.//');
     if (amount < 1) return message.reply('//ERROR: I have to delete at least one message.//');
 
-    await message.channel.fetchMessages({ limit: amount }).then(messages => {
+    await message.channel.fetchMessages({ limit: amount + 1}).then(messages => {
         message.channel.bulkDelete(messages)
     });
 }
