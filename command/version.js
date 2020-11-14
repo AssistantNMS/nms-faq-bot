@@ -14,14 +14,14 @@ const getCurrBotVer = (message) => {
 const getCurrAppVer = async () => {
     let response;
     try {
-        response = await fetch('https://api.nmsassistant.com/version');
+        response = await fetch('https://api.assistantapps.com/Version/589405b4-e40f-4cd9-b793-6bf37944ee09?platforms=0&platforms=1');
     } catch(err) {
         console.log('Could not get App version from API', err);
         return -1;
     }
     
     let data = await response.json();
-    return data.name;
+    return 'Latest version: ' + data.buildName;
 };
 
 const getCommunityLinks = async () => {
